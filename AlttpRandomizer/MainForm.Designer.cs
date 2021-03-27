@@ -66,7 +66,8 @@
             this.randomizerDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.randomizerDifficulty.FormattingEnabled = true;
             this.randomizerDifficulty.Items.AddRange(new object[] {
-            "Casual"});
+            "Casual",
+            "No Logic"});
             this.randomizerDifficulty.Location = new System.Drawing.Point(68, 6);
             this.randomizerDifficulty.Name = "randomizerDifficulty";
             this.randomizerDifficulty.Size = new System.Drawing.Size(121, 21);

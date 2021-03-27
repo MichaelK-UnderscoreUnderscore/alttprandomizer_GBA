@@ -63,6 +63,7 @@
     <Compile Include="Rom\IRomLocations.cs" />
     <Compile Include="Rom\Item.cs" />
     <Compile Include="Rom\Location.cs" />
+    <Compile Include="Rom\RomLocationsNoLogic.cs" />
     <Compile Include="Rom\RomLocationsCasual.cs" />
     <Compile Include="Rom\RomLocationsFactory.cs" />
     <EmbeddedResource Include="MainForm.resx">

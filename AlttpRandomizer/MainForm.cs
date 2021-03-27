@@ -146,6 +146,9 @@ namespace AlttpRandomizer
                     case "Casual":
                         difficulty = RandomizerDifficulty.Casual;
                         break;
+                    case "No Logic":
+                        difficulty = RandomizerDifficulty.NoLogic;
+                        break;
                     default:
                         MessageBox.Show("Please select a difficulty.", "Select Difficulty", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         WriteOutput("Please select a difficulty.");

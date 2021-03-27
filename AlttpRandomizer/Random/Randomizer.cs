@@ -13,6 +13,7 @@ namespace AlttpRandomizer.Random
 	{
         None,
 		Casual,
+		NoLogic,
 	}
 
 	public class Randomizer
