@@ -12,6 +12,7 @@ namespace AlttpRandomizer.Net
     {
         public static string Current = "3";
         public static bool Debug = false;
+    
 
         public static string CurrentDisplay
         {

@@ -335,7 +335,7 @@ namespace AlttpRandomizer.Random
 
 			using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
 			{
-				rom.Write(Resources.RomImage, 0, 2097152);
+				rom.Write(Resources.RomImage, 0, 8388608);
 
 				foreach (var location in romLocations.Locations)
 				{
@@ -348,12 +348,6 @@ namespace AlttpRandomizer.Random
                 }
 
 				WriteSeedInRom(rom);
-
-			    if (RandomizerVersion.Debug)
-			    {
-			        WriteDebugModeToRom(rom);
-			    }
-
 				rom.Close();
 			}
 
@@ -362,6 +356,7 @@ namespace AlttpRandomizer.Random
 
         private void WriteDebugModeToRom(FileStream rom)
         {
+			return;
             rom.Seek(0x65b88, SeekOrigin.Begin);
             rom.Write(StringToByteArray("\xea\xea"), 0, 2);
             rom.Seek(0x65b91, SeekOrigin.Begin);
@@ -370,6 +365,7 @@ namespace AlttpRandomizer.Random
 
         private void WriteSeedInRom(FileStream rom)
 		{
+			return;
 			string seedStr = string.Format(romLocations.SeedRomString, RandomizerVersion.Current, seed.ToString().PadLeft(7, '0')).PadRight(21).Substring(0, 21);
 			rom.Seek(0x7fc0, SeekOrigin.Begin);
 			rom.Write(StringToByteArray(seedStr), 0, 21);

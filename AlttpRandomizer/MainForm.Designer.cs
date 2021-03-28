@@ -147,7 +147,7 @@
             this.filename.Name = "filename";
             this.filename.Size = new System.Drawing.Size(438, 20);
             this.filename.TabIndex = 25;
-            this.filename.Text = "ALttP Random <seed>.sfc";
+            this.filename.Text = "ALttP Random <seed>.gba";
             this.filename.TextChanged += new System.EventHandler(this.filename_TextChanged);
             this.filename.Leave += new System.EventHandler(this.filename_Leave);
             // 

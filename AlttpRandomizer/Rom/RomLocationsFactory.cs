@@ -15,6 +15,8 @@ namespace AlttpRandomizer.Rom
 			{
 				case RandomizerDifficulty.Casual:
 					return new RomLocationsCasual();
+				case RandomizerDifficulty.NoLogic:
+					return new RomLocationsNoLogic();
 				default:
 					throw new ArgumentException("Difficulty must be set.", "difficulty");
 			}

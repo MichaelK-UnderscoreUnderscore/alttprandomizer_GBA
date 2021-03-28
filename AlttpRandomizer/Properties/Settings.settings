@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AlttpRandomizer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="OutputFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ALttP Random - &lt;seed&gt;.sfc</Value>
-    </Setting>
     <Setting Name="RandomizerDifficulty" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Casual</Value>
+      <Value Profile="(Default)">No Logic</Value>
     </Setting>
     <Setting Name="CreateSpoilerLog" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="OutputFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ALttP Rando - &lt;seed&gt;.gba</Value>
     </Setting>
   </Settings>
 </SettingsFile>

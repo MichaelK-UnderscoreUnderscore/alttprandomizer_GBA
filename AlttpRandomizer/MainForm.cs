@@ -37,13 +37,13 @@ namespace AlttpRandomizer
 		}
 
 		private void create_Click(object sender, EventArgs e)
-		{
-			if (string.IsNullOrWhiteSpace(seed.Text))
+        {
+            ClearOutput();
+
+            if (string.IsNullOrWhiteSpace(seed.Text))
 			{
 				SetSeedBasedOnDifficulty();
 			}
-
-			ClearOutput();
 
 		    var difficulty = GetRandomizerDifficulty();
 
@@ -133,27 +133,19 @@ namespace AlttpRandomizer
         {
             RandomizerDifficulty difficulty;
 
-            if (seed.Text.ToUpper().Contains("C"))
+
+            switch (randomizerDifficulty.SelectedItem.ToString())
             {
-                randomizerDifficulty.SelectedItem = "Casual";
-                seed.Text = seed.Text.ToUpper().Replace("C", "");
-                difficulty = RandomizerDifficulty.Casual;
-            }
-            else
-            {
-                switch (randomizerDifficulty.SelectedItem.ToString())
-                {
-                    case "Casual":
-                        difficulty = RandomizerDifficulty.Casual;
-                        break;
-                    case "No Logic":
-                        difficulty = RandomizerDifficulty.NoLogic;
-                        break;
-                    default:
-                        MessageBox.Show("Please select a difficulty.", "Select Difficulty", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        WriteOutput("Please select a difficulty.");
-                        return RandomizerDifficulty.None;
-                }
+                case "Casual":
+                    difficulty = RandomizerDifficulty.Casual;
+                    break;
+                case "No Logic":
+                    difficulty = RandomizerDifficulty.NoLogic;
+                    break;
+                default:
+                    MessageBox.Show("Please select a difficulty.", "Select Difficulty", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    WriteOutput("Please select a difficulty.");
+                    return RandomizerDifficulty.None;
             }
             return difficulty;
         }
@@ -163,7 +155,7 @@ namespace AlttpRandomizer
             switch (randomizerDifficulty.SelectedItem.ToString())
             {
                 default:
-                    seed.Text = string.Format("C{0:0000000}", (new SeedRandom()).Next(10000000));
+                    seed.Text = string.Format("{0:0000000}", (new SeedRandom()).Next(10000000));
                     break;
             }
         }
@@ -202,7 +194,7 @@ namespace AlttpRandomizer
 
 			if (!senderText.Text.Contains("."))
 			{
-				senderText.Text += ".sfc";
+				senderText.Text += ".gba";
 			}
 		}
 
