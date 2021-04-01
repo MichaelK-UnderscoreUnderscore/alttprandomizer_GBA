@@ -40,6 +40,7 @@
             this.filename = new System.Windows.Forms.TextBox();
             this.btnReport = new System.Windows.Forms.Button();
             this.randomSpoiler = new System.Windows.Forms.Button();
+            this.selrom = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // createSpoilerLog
@@ -121,6 +122,7 @@
             // create
             // 
             this.create.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.create.Enabled = false;
             this.create.Location = new System.Drawing.Point(404, 17);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(75, 23);
@@ -173,11 +175,23 @@
             this.randomSpoiler.UseVisualStyleBackColor = true;
             this.randomSpoiler.Click += new System.EventHandler(this.randomSpoiler_Click);
             // 
+            // selrom
+            // 
+            this.selrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.selrom.Location = new System.Drawing.Point(323, 17);
+            this.selrom.Name = "selrom";
+            this.selrom.Size = new System.Drawing.Size(75, 23);
+            this.selrom.TabIndex = 35;
+            this.selrom.Text = "Select Rom";
+            this.selrom.UseVisualStyleBackColor = true;
+            this.selrom.Click += new System.EventHandler(this.selrom_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 336);
+            this.Controls.Add(this.selrom);
             this.Controls.Add(this.randomSpoiler);
             this.Controls.Add(this.btnReport);
             this.Controls.Add(this.createSpoilerLog);
@@ -212,6 +226,7 @@
         private System.Windows.Forms.TextBox filename;
 		private System.Windows.Forms.Button btnReport;
         private System.Windows.Forms.Button randomSpoiler;
+        private System.Windows.Forms.Button selrom;
     }
 }
 

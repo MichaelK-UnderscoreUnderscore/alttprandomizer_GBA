@@ -15,14 +15,19 @@ using AlttpRandomizer.Net;
 using AlttpRandomizer.Properties;
 using AlttpRandomizer.Random;
 using AlttpRandomizer.Rom;
+using CRC;
+
 
 namespace AlttpRandomizer
 {
     public partial class MainForm : Form
     {
 		private Thread checkUpdateThread;
+        private byte[] romImage;
+        private bool romRegion; // US False, JP True
 
-		public MainForm()
+
+        public MainForm()
         {
 			InitializeSettings();
 			InitializeComponent();
@@ -62,8 +67,8 @@ namespace AlttpRandomizer
         private void CreateRom(RandomizerDifficulty difficulty)
         {
             int parsedSeed;
-
-            if (!int.TryParse(seed.Text, out parsedSeed))
+            string y = Regex.Replace(seed.Text, @"\D", "");
+            if (!int.TryParse(y, out parsedSeed))
             {
                 MessageBox.Show("Seed must be numeric or blank.", "Seed Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 WriteOutput("Seed must be numeric or blank.");
@@ -82,7 +87,7 @@ namespace AlttpRandomizer
 
                 try
                 {
-                    var randomizer = new Randomizer(parsedSeed, romPlms, log);
+                    var randomizer = new Randomizer(romImage, romRegion, parsedSeed, romPlms, log); ;
                     randomizer.CreateRom(filename.Text);
 
                     var outputString = new StringBuilder();
@@ -118,7 +123,7 @@ namespace AlttpRandomizer
 
                 try
                 {
-                    var randomizer = new Randomizer(parsedSeed, romPlms, log);
+                    var randomizer = new Randomizer(romImage, romRegion, parsedSeed, romPlms, log);
                     WriteOutput(randomizer.CreateRom(filename.Text, true));
                 }
                 catch (RandomizationException ex)
@@ -216,7 +221,7 @@ namespace AlttpRandomizer
 		{
 			filename.Text = Settings.Default.OutputFile;
 			createSpoilerLog.Checked = Settings.Default.CreateSpoilerLog;
-			Text = string.Format("A Link to the Past Randomizer v{0}", RandomizerVersion.CurrentDisplay);
+			Text = string.Format("A Link to the Past GBA Randomizer v{0}", RandomizerVersion.CurrentDisplay);
 			randomizerDifficulty.SelectedItem = Settings.Default.RandomizerDifficulty;
 			RunCheckUpdate();
 
@@ -229,6 +234,7 @@ namespace AlttpRandomizer
 
         private void RunCheckUpdate()
 		{
+            return;
 			checkUpdateThread = new Thread(RandomizerVersion.CheckUpdate);
 			checkUpdateThread.SetApartmentState(ApartmentState.STA);
 			checkUpdateThread.Start();
@@ -242,6 +248,44 @@ namespace AlttpRandomizer
 
             var difficulty = GetRandomizerDifficulty();
             CreateSpoilerLog(difficulty);
+        }
+
+        private void selrom_Click(object sender, EventArgs e)
+        {
+            ClearOutput();
+
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "GBA Roms(*.gba)|*.gba|All Files|*.*";
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.ShowDialog();
+                byte[] rom = File.ReadAllBytes(openFileDialog.FileName);
+                string hash = Crc32.ToHexString(rom);
+
+                switch (hash)
+                {
+                    case "8E91CD13":
+                        romRegion = false;
+                        romImage = rom;
+                        create.Enabled = true;
+                        break;
+                    case "81E42BEE":
+                        romRegion = true;
+                        romImage = rom;
+                        create.Enabled = true;
+                        break;
+                    default:
+                        output.Text = hash + Environment.NewLine +
+                            "The Hash was not of the US or JP Rom supported in this." + Environment.NewLine +
+                            "Please use a Rom with either \"8E91CD13\" (US) or \"81E42BEE\" as CRC32 Hash.";
+                        break;
+                }
+
+            } catch (Exception f)
+            {
+                output.Text = f.ToString();
+            }
         }
     }
 }

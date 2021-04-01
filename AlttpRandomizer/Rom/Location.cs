@@ -32,7 +32,8 @@ namespace AlttpRandomizer.Rom
     public class Location
     {
         public string Name { get; set; }
-        public long Address { get; set; }
+        public long Address_JP { get; set; }
+        public long Address_US { get; set; }
         public bool LateGameItem { get; set; }
         public bool UniqueItemOnly { get; set; }
         public int KeysNeeded { get; set; }

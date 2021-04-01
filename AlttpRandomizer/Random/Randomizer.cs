@@ -24,13 +24,17 @@ namespace AlttpRandomizer.Random
 		private readonly int seed;
 		private readonly IRomLocations romLocations;
 		private readonly RandomizerLog log;
+		private byte[] romImage;
+		private bool romRegion; // US False, JP True
 
-		public Randomizer(int seed, IRomLocations romLocations, RandomizerLog log)
+		public Randomizer(byte[] rom, bool region, int seed, IRomLocations romLocations, RandomizerLog log)
 		{
 			random = new SeedRandom(seed);
 			this.romLocations = romLocations;
 			this.seed = seed;
 			this.log = log;
+			this.romImage = rom;
+			this.romRegion = region;
 		}
 
 		public string CreateRom(string filename, bool spoilerOnly = false)
@@ -335,11 +339,11 @@ namespace AlttpRandomizer.Random
 
 			using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
 			{
-				rom.Write(Resources.RomImage, 0, 8388608);
+				rom.Write(romImage, 0, 8388608);
 
 				foreach (var location in romLocations.Locations)
 				{
-					rom.Seek(location.Address, SeekOrigin.Begin);
+					rom.Seek(romRegion ? location.Address_JP : location.Address_US, SeekOrigin.Begin);
 				    var newItem = (byte)location.Item.HexValue;
 
                     rom.Write(new [] { newItem }, 0, 1);

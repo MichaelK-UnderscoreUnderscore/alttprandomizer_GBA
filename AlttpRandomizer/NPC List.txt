@@ -1,0 +1,50 @@
+﻿(jp)
+(us)
+------
+D23BA - Bottle Vendor 
+D15D0
+------
+D376E ?? Stumpy
+D2996
+------
+D4708 ?? Smith
+D3930
+------
+D5644 ?? Pedestal
+D4854
+------
+D8A02 ?? Book (Library)
+D7C12
+------
+DD18C ?? Sick Kid
+DC310
+------
+DDD10 - Old Man
+DCE9A
+------
+DE44E ?? Purple Chest, Hobo? Likely Chest
+DD5D6
+------
+DF4FA ?? Sahasrahamanata
+DE682
+------
+F28E0 ?? Purple Chest, Hobo? Likely Chest
+F19C6
+------
+F36CA ?? Boss Heart? // 26 //
+F27AE
+------
+F383A ?? Boss Hearts Again? // 3E //
+F291E
+------
+F3892 ?? Boss Hearts Again? // 26 //
+F2978
+------
+
+------
+
+
+
+
+// this line is for the Item Give I think? seems to work so far
+bl sub_080A1588

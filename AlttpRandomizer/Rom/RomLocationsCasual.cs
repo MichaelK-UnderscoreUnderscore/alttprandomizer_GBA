@@ -13,7 +13,7 @@ namespace AlttpRandomizer.Rom
     {
         public List<Location> Locations { get; set; }
         public string DifficultyName => "Casual";
-        public string SeedFileString => "C{0:0000000}";
+        public string SeedFileString => "{0:0000000}";
         public string SeedRomString => "Z3Rv{0} C{1}";
 
         public void ResetLocations()
@@ -25,7 +25,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Escape - first B1 room",
-                    Address = 0x154664,
+                    Address_JP = 0x154664,
+                    Address_US = 0x153300,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -36,7 +37,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-034] Hyrule Castle secret entrance",
-                    Address = 0x154667,
+                    Address_JP = 0x154667,
+                    Address_US = 0x153303,
                     CanAccess =
                         have =>
                         true,
@@ -46,7 +48,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Hyrule Castle - boomerang room",
-                    Address = 0x15466A,
+                    Address_JP = 0x15466A,
+                    Address_US = 0x153306,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -57,7 +60,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.EasternPalace,
                     Name = "[dungeon-L1-1F] Eastern Palace - compass room",
-                    Address = 0x15466D,
+                    Address_JP = 0x15466D,
+                    Address_US = 0x153309,
                     CanAccess =
                         have =>
                         CanEnterEasternPalace(have),
@@ -67,7 +71,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-018] Graveyard - top right grave",
-                    Address = 0x154670,
+                    Address_JP = 0x154670,
+                    Address_US = 0x15330C,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -80,7 +85,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.EasternPalace,
                     Name = "[dungeon-L1-1F] Eastern Palace - big chest",
-                    Address = 0x154673,
+                    Address_JP = 0x154673,
+                    Address_US = 0x15330F,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -91,7 +97,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B1] Swamp Palace - map room",
-                    Address = 0x15467C,
+                    Address_JP = 0x15467C,
+                    Address_US = 0x153318,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -102,7 +109,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B1] Swamp Palace - big chest",
-                    Address = 0x15467F,
+                    Address_JP = 0x15467F,
+                    Address_US = 0x15331B,
                     KeysNeeded = 3,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -115,7 +123,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-047] Dam",
-                    Address = 0x154682,
+                    Address_JP = 0x154682,
+                    Address_US = 0x15331E,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -125,7 +134,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.DesertPalace,
                     Name = "[dungeon-L2-B1] Desert Palace - big chest",
-                    Address = 0x154685,
+                    Address_JP = 0x154685,
+                    Address_US = 0x153321,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -136,7 +146,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - Compass room",
-                    Address = 0x154688,
+                    Address_JP = 0x154688,
+                    Address_US = 0x153324,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods(have),
@@ -146,7 +157,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B4] Ice Palace - above Blue Mail room",
-                    Address = 0x15468B,
+                    Address_JP = 0x15468B,
+                    Address_US = 0x153327,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -157,7 +169,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - big chest",
-                    Address = 0x15468E,
+                    Address_JP = 0x15468E,
+                    Address_US = 0x15332A,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -168,7 +181,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - east of Fire Rod room",
-                    Address = 0x154691,
+                    Address_JP = 0x154691,
+                    Address_US = 0x15332D,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods(have),
@@ -178,7 +192,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - Big Key room",
-                    Address = 0x154694,
+                    Address_JP = 0x154694,
+                    Address_US = 0x153330,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods(have),
@@ -188,7 +203,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - Gibdo/Stalfos room",
-                    Address = 0x154697,
+                    Address_JP = 0x154697,
+                    Address_US = 0x153333,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods(have),
@@ -198,7 +214,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B1] Ice Palace - Big Key room",
-                    Address = 0x15469A,
+                    Address_JP = 0x15469A,
+                    Address_US = 0x153336,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -211,7 +228,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B5] Ice Palace - big chest",
-                    Address = 0x1546A0,
+                    Address_JP = 0x1546A0,
+                    Address_US = 0x15333C,
                     KeysNeeded = 2,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -223,7 +241,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.TowerOfHera,
                     Name = "[dungeon-L3-2F] Tower of Hera - Entrance",
-                    Address = 0x1546A3,
+                    Address_JP = 0x1546A3,
+                    Address_US = 0x15333F,
                     CanAccess =
                         have =>
                         CanEnterTowerOfHera(have),
@@ -234,7 +253,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.EasternPalace,
                     Name = "[dungeon-L1-1F] Eastern Palace - big ball room",
-                    Address = 0x1546A9,
+                    Address_JP = 0x1546A9,
+                    Address_US = 0x153345,
                     CanAccess =
                         have =>
                         CanEnterEasternPalace(have),
@@ -244,7 +264,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.DesertPalace,
                     Name = "[dungeon-L2-B1] Desert Palace - Map room",
-                    Address = 0x1546AC,
+                    Address_JP = 0x1546AC,
+                    Address_US = 0x153348,
                     CanAccess =
                         have =>
                         CanEnterDesertPalace(have),
@@ -254,7 +275,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.EasternPalace,
                     Name = "[dungeon-L1-1F] Eastern Palace - Big key",
-                    Address = 0x1546AF,
+                    Address_JP = 0x1546AF,
+                    Address_US = 0x15334B,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -265,7 +287,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-040] Link's House",
-                    Address = 0x1546B2,
+                    Address_JP = 0x1546B2,
+                    Address_US = 0x15334E,
                     CanAccess =
                         have =>
                         true,
@@ -275,7 +298,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-012-1F] Death Mountain - wall of caves - left cave",
-                    Address = 0x1546B5,
+                    Address_JP = 0x1546B5,
+                    Address_US = 0x153351,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -288,7 +312,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.DesertPalace,
                     Name = "[dungeon-L2-B1] Desert Palace - Big key room",
-                    Address = 0x1546B8,
+                    Address_JP = 0x1546B8,
+                    Address_US = 0x153354,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -299,7 +324,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.LightWorld,
                     Name = "[cave-013] Mimic cave (from Turtle Rock)",
-                    Address = 0x1546BB,
+                    Address_JP = 0x1546BB,
+                    Address_US = 0x153357,
                     CanAccess =
                         have =>
                         CanEnterTurtleRock(have),
@@ -309,7 +335,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - south of Fire Rod room",
-                    Address = 0x1546BE,
+                    Address_JP = 0x1546BE,
+                    Address_US = 0x15335A,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods(have),
@@ -319,7 +346,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.DesertPalace,
                     Name = "[dungeon-L2-B1] Desert Palace - compass room",
-                    Address = 0x1546C1,
+                    Address_JP = 0x1546C1,
+                    Address_US = 0x15335D,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -330,7 +358,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-031] Tavern",
-                    Address = 0x1546C4,
+                    Address_JP = 0x1546C4,
+                    Address_US = 0x153360,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -341,7 +370,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B1] Ice Palace - compass room",
-                    Address = 0x1546CA,
+                    Address_JP = 0x1546CA,
+                    Address_US = 0x153366,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -353,7 +383,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - spike room",
-                    Address = 0x1546D0,
+                    Address_JP = 0x1546D0,
+                    Address_US = 0x15336C,
                     CanAccess =
                         have =>
                         CanEnterMiseryMire(have),
@@ -363,7 +394,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B2] Ice Palace - map room",
-                    Address = 0x1546D3,
+                    Address_JP = 0x1546D3,
+                    Address_US = 0x15336F,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -375,7 +407,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B3] Ice Palace - spike room",
-                    Address = 0x1546D6,
+                    Address_JP = 0x1546D6,
+                    Address_US = 0x153372,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -387,7 +420,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.IcePalace,
                     Name = "[dungeon-D5-B5] Ice Palace - b5 up staircase",
-                    Address = 0x1546D9,
+                    Address_JP = 0x1546D9,
+                    Address_US = 0x153375,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -398,7 +432,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.TowerOfHera,
                     Name = "[dungeon-L3-1F] Tower of Hera - first floor",
-                    Address = 0x1546DC,
+                    Address_JP = 0x1546DC,
+                    Address_US = 0x153378,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -409,7 +444,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-026] chicken house",
-                    Address = 0x1546DF,
+                    Address_JP = 0x1546DF,
+                    Address_US = 0x15337B,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -419,7 +455,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-063] doorless hut",
-                    Address = 0x1546E2,
+                    Address_JP = 0x1546E2,
+                    Address_US = 0x15337E,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -429,7 +466,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-062] C-shaped house",
-                    Address = 0x1546E5,
+                    Address_JP = 0x1546E5,
+                    Address_US = 0x153381,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -439,7 +477,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-044] Aginah's cave",
-                    Address = 0x1546E8,
+                    Address_JP = 0x1546E8,
+                    Address_US = 0x153384,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -449,7 +488,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.EasternPalace,
                     Name = "[dungeon-L1-1F] Eastern Palace - map room",
-                    Address = 0x1546EB,
+                    Address_JP = 0x1546EB,
+                    Address_US = 0x153387,
                     CanAccess =
                         have =>
                         CanEnterEasternPalace(have),
@@ -459,7 +499,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.TowerOfHera,
                     Name = "[dungeon-L3-4F] Tower of Hera - big chest",
-                    Address = 0x1546EE,
+                    Address_JP = 0x1546EE,
+                    Address_US = 0x15338A,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -470,7 +511,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.TowerOfHera,
                     Name = "[dungeon-L3-4F] Tower of Hera - 4F [small chest]",
-                    Address = 0x1546F1,
+                    Address_JP = 0x1546F1,
+                    Address_US = 0x15338D,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -481,7 +523,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SkullWoods,
                     Name = "[dungeon-D3-B1] Skull Woods - Entrance to part 2",
-                    Address = 0x1546F4,
+                    Address_JP = 0x1546F4,
+                    Address_US = 0x153390,
                     CanAccess =
                         have =>
                         CanEnterSkullWoods2(have),
@@ -491,7 +534,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [top left chest]",
-                    Address = 0x1546F7,
+                    Address_JP = 0x1546F7,
+                    Address_US = 0x153393,
                     CanAccess =
                         have =>
                         CanEnterThievesTown(have),
@@ -501,7 +545,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B1] Thieves' Town - Bottom left of huge room [bottom right chest]",
-                    Address = 0x1546FA,
+                    Address_JP = 0x1546FA,
+                    Address_US = 0x153396,
                     CanAccess =
                         have =>
                         CanEnterThievesTown(have),
@@ -511,7 +556,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B1] Thieves' Town - Bottom right of huge room",
-                    Address = 0x1546FD,
+                    Address_JP = 0x1546FD,
+                    Address_US = 0x153399,
                     CanAccess =
                         have =>
                         CanEnterThievesTown(have),
@@ -521,7 +567,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B1] Thieves' Town - Top left of huge room",
-                    Address = 0x154700,
+                    Address_JP = 0x154700,
+                    Address_US = 0x15339C,
                     CanAccess =
                         have =>
                         CanEnterThievesTown(have),
@@ -531,7 +578,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-1F] Thieves' Town - Room above boss",
-                    Address = 0x154703,
+                    Address_JP = 0x154703,
+                    Address_US = 0x15339F,
                     KeysNeeded = 2,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -543,7 +591,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B2] Thieves' Town - big chest",
-                    Address = 0x154706,
+                    Address_JP = 0x154706,
+                    Address_US = 0x1533A2,
                     KeysNeeded = 2,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -556,7 +605,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.ThievesTown,
                     Name = "[dungeon-D4-B2] Thieves' Town - next to Blind",
-                    Address = 0x154709,
+                    Address_JP = 0x154709,
+                    Address_US = 0x1533A5,
                     KeysNeeded = 1,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -568,7 +618,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-1F] Turtle Rock - Chain chomp room",
-                    Address = 0x15470C,
+                    Address_JP = 0x15470C,
+                    Address_US = 0x1533A8,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -580,7 +631,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B1] Turtle Rock - big chest",
-                    Address = 0x15470F,
+                    Address_JP = 0x15470F,
+                    Address_US = 0x1533AB,
                     KeysNeeded = 3,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -593,7 +645,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-1F] Turtle Rock - Map room [left chest]",
-                    Address = 0x154712,
+                    Address_JP = 0x154712,
+                    Address_US = 0x1533AE,
                     CanAccess =
                         have =>
                         CanEnterTurtleRock(have)
@@ -604,7 +657,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-1F] Turtle Rock - Map room [right chest]",
-                    Address = 0x154715,
+                    Address_JP = 0x154715,
+                    Address_US = 0x1533B1,
                     CanAccess =
                         have =>
                         CanEnterTurtleRock(have)
@@ -615,7 +669,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-1F] Turtle Rock - compass room",
-                    Address = 0x154718,
+                    Address_JP = 0x154718,
+                    Address_US = 0x1533B4,
                     CanAccess =
                         have =>
                         CanEnterTurtleRock(have),
@@ -625,7 +680,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B1] Turtle Rock - big key room",
-                    Address = 0x15471B,
+                    Address_JP = 0x15471B,
+                    Address_US = 0x1533B7,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -637,7 +693,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B2] Turtle Rock - Eye bridge room [top right chest]",
-                    Address = 0x15471E,
+                    Address_JP = 0x15471E,
+                    Address_US = 0x1533BA,
                     KeysNeeded = 5,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -651,7 +708,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B2] Turtle Rock - Eye bridge room [top left chest]",
-                    Address = 0x154721,
+                    Address_JP = 0x154721,
+                    Address_US = 0x1533BD,
                     KeysNeeded = 5,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -665,7 +723,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom right chest]",
-                    Address = 0x154724,
+                    Address_JP = 0x154724,
+                    Address_US = 0x1533C0,
                     KeysNeeded = 5,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -679,7 +738,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B2] Turtle Rock - Eye bridge room [bottom left chest]",
-                    Address = 0x154727,
+                    Address_JP = 0x154727,
+                    Address_US = 0x1533C3,
                     KeysNeeded = 5,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -693,7 +753,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.TurtleRock,
                     Name = "[dungeon-D7-B1] Turtle Rock - Roller switch room",
-                    Address = 0x15472A,
+                    Address_JP = 0x15472A,
+                    Address_US = 0x1533C6,
                     KeysNeeded = 4,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -706,7 +767,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - big key room",
-                    Address = 0x15472D,
+                    Address_JP = 0x15472D,
+                    Address_US = 0x1533C9,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -717,7 +779,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - jump room [right chest]",
-                    Address = 0x154730,
+                    Address_JP = 0x154730,
+                    Address_US = 0x1533CC,
                     CanAccess =
                         have =>
                         CanEnterDarkPalace(have)
@@ -728,7 +791,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - jump room [left chest]",
-                    Address = 0x154733,
+                    Address_JP = 0x154733,
+                    Address_US = 0x1533CF,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -739,7 +803,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - big chest",
-                    Address = 0x154736,
+                    Address_JP = 0x154736,
+                    Address_US = 0x1533D2,
                     KeysNeeded = 3,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -751,7 +816,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - compass room",
-                    Address = 0x154739,
+                    Address_JP = 0x154739,
+                    Address_US = 0x1533D5,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -762,7 +828,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - spike statue room",
-                    Address = 0x15473C,
+                    Address_JP = 0x15473C,
+                    Address_US = 0x1533D8,
                     KeysNeeded = 3,
                     CanAccess =
                         have =>
@@ -773,7 +840,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-B1] Dark Palace - turtle stalfos room",
-                    Address = 0x15473F,
+                    Address_JP = 0x15473F,
+                    Address_US = 0x1533DB,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -784,7 +852,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [left chest]",
-                    Address = 0x154742,
+                    Address_JP = 0x154742,
+                    Address_US = 0x1533DE,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -795,7 +864,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-B1] Dark Palace - room leading to Helmasaur [right chest]",
-                    Address = 0x154745,
+                    Address_JP = 0x154745,
+                    Address_US = 0x1533E1,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -806,7 +876,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - statue push room",
-                    Address = 0x154748,
+                    Address_JP = 0x154748,
+                    Address_US = 0x1533E4,
                     CanAccess =
                         have =>
                         CanEnterDarkPalace(have)
@@ -817,7 +888,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - maze room [top chest]",
-                    Address = 0x15474B,
+                    Address_JP = 0x15474B,
+                    Address_US = 0x1533E7,
                     KeysNeeded = 3,
                     CanAccess =
                         have =>
@@ -828,7 +900,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-1F] Dark Palace - maze room [bottom chest]",
-                    Address = 0x15474E,
+                    Address_JP = 0x15474E,
+                    Address_US = 0x1533EA,
                     KeysNeeded = 3,
                     CanAccess =
                         have =>
@@ -839,7 +912,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkPalace,
                     Name = "[dungeon-D1-B1] Dark Palace - shooter room",
-                    Address = 0x154751,
+                    Address_JP = 0x154751,
+                    Address_US = 0x1533ED,
                     CanAccess =
                         have =>
                         CanEnterDarkPalace(have),
@@ -849,7 +923,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - big hub room",
-                    Address = 0x154754,
+                    Address_JP = 0x154754,
+                    Address_US = 0x1533F0,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -860,7 +935,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - end of bridge",
-                    Address = 0x154757,
+                    Address_JP = 0x154757,
+                    Address_US = 0x1533F3,
                     CanAccess =
                         have =>
                         CanEnterMiseryMire(have),
@@ -870,7 +946,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - compass",
-                    Address = 0x15475A,
+                    Address_JP = 0x15475A,
+                    Address_US = 0x1533F6,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -883,7 +960,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - big chest",
-                    Address = 0x15475D,
+                    Address_JP = 0x15475D,
+                    Address_US = 0x1533F9,
                     KeysNeeded = 2,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -897,7 +975,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - map room",
-                    Address = 0x154760,
+                    Address_JP = 0x154760,
+                    Address_US = 0x1533FC,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -908,7 +987,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.MiseryMire,
                     Name = "[dungeon-D6-B1] Misery Mire - big key",
-                    Address = 0x154763,
+                    Address_JP = 0x154763,
+                    Address_US = 0x1533FF,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -922,19 +1002,21 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-071] Misery Mire west area [left chest]",
-                    Address = 0x154769,
+                    Address_JP = 0x154769,
+                    Address_US = 0x153405,
                     CanAccess =
                         have =>
                         have.Contains(ItemType.OcarinaActive)
                         && CanBeInDarkWorld(have)
                         && have.Contains(ItemType.TitansMitt),
-               },
+                },
                 new Location
                 {
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-071] Misery Mire west area [right chest]",
-                    Address = 0x15476C,
+                    Address_JP = 0x15476C,
+                    Address_US = 0x153408,
                     CanAccess =
                         have =>
                         have.Contains(ItemType.OcarinaActive)
@@ -946,7 +1028,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[dungeon-C-1F] Sanctuary",
-                    Address = 0x15476F,
+                    Address_JP = 0x15476F,
+                    Address_US = 0x15340B,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -956,7 +1039,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-057-1F] Dark World Death Mountain - cave from top to bottom [top chest]",
-                    Address = 0x154772,
+                    Address_JP = 0x154772,
+                    Address_US = 0x15340E,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have),
@@ -966,7 +1050,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-057-1F] Dark World Death Mountain - cave from top to bottom [bottom chest]",
-                    Address = 0x154775,
+                    Address_JP = 0x154775,
+                    Address_US = 0x153411,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have),
@@ -976,7 +1061,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-035] Sahasrahla's Hut [left chest]",
-                    Address = 0x154778,
+                    Address_JP = 0x154778,
+                    Address_US = 0x153414,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -986,7 +1072,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-035] Sahasrahla's Hut [center chest]",
-                    Address = 0x15477B,
+                    Address_JP = 0x15477B,
+                    Address_US = 0x153417,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -996,7 +1083,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-035] Sahasrahla's Hut [right chest]",
-                    Address = 0x15477E,
+                    Address_JP = 0x15477E,
+                    Address_US = 0x15341A,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1006,7 +1094,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-055] Spike cave",
-                    Address = 0x154781,
+                    Address_JP = 0x154781,
+                    Address_US = 0x15341D,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1020,7 +1109,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-021] Kakariko well [top chest]",
-                    Address = 0x154784,
+                    Address_JP = 0x154784,
+                    Address_US = 0x153420,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1030,7 +1120,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-021] Kakariko well [left chest row of 3]",
-                    Address = 0x154787,
+                    Address_JP = 0x154787,
+                    Address_US = 0x153423,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1040,7 +1131,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-021] Kakariko well [center chest row of 3]",
-                    Address = 0x15478A,
+                    Address_JP = 0x15478A,
+                    Address_US = 0x153426,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1050,7 +1142,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-021] Kakariko well [right chest row of 3]",
-                    Address = 0x15478D,
+                    Address_JP = 0x15478D,
+                    Address_US = 0x153429,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1060,7 +1153,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-021] Kakariko well [bottom chest]",
-                    Address = 0x154790,
+                    Address_JP = 0x154790,
+                    Address_US = 0x15342C,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1070,7 +1164,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-1F] Swamp Palace - first room",
-                    Address = 0x154793,
+                    Address_JP = 0x154793,
+                    Address_US = 0x15342F,
                     CanAccess =
                         have =>
                         CanEnterSwampPalace(have),
@@ -1080,7 +1175,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B1] Swamp Palace - south of hookshot room",
-                    Address = 0x154796,
+                    Address_JP = 0x154796,
+                    Address_US = 0x153432,
                     KeysNeeded = 3,
                     CanAccess =
                         have =>
@@ -1092,7 +1188,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B1] Swamp Palace - push 4 blocks room",
-                    Address = 0x154799,
+                    Address_JP = 0x154799,
+                    Address_US = 0x153435,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1104,7 +1201,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B1] Swamp Palace - big key room",
-                    Address = 0x15479C,
+                    Address_JP = 0x15479C,
+                    Address_US = 0x153438,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1116,7 +1214,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B2] Swamp Palace - flooded room [left chest]",
-                    Address = 0x15479F,
+                    Address_JP = 0x15479F,
+                    Address_US = 0x15343B,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1128,7 +1227,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B2] Swamp Palace - flooded room [right chest]",
-                    Address = 0x1547A2,
+                    Address_JP = 0x1547A2,
+                    Address_US = 0x15343E,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1141,7 +1241,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.SwampPalace,
                     Name = "[dungeon-D2-B2] Swamp Palace - hidden waterfall door room",
-                    Address = 0x1547A5,
+                    Address_JP = 0x1547A5,
+                    Address_US = 0x153441,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1154,7 +1255,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleTower,
                     Name = "[dungeon-A1-3F] Hyrule Castle Tower - maze room",
-                    Address = 0x1547A8,
+                    Address_JP = 0x1547A8,
+                    Address_US = 0x153444,
                     CanAccess =
                         have =>
                         CanEnterHyruleCastleTower(have),
@@ -1164,7 +1266,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleTower,
                     Name = "[dungeon-A1-2F] Hyrule Castle Tower - 2 knife guys room",
-                    Address = 0x1547AB,
+                    Address_JP = 0x1547AB,
+                    Address_US = 0x153447,
                     CanAccess =
                         have =>
                         CanEnterHyruleCastleTower(have),
@@ -1174,7 +1277,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - north of gap room [top left chest]",
-                    Address = 0x1547AE,
+                    Address_JP = 0x1547AE,
+                    Address_US = 0x15344A,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1184,7 +1288,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - north of gap room [top right chest]",
-                    Address = 0x1547B1,
+                    Address_JP = 0x1547B1,
+                    Address_US = 0x15344D,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1194,7 +1299,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom left chest]",
-                    Address = 0x1547B4,
+                    Address_JP = 0x1547B4,
+                    Address_US = 0x153450,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1204,7 +1310,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - north of gap room [bottom right chest]",
-                    Address = 0x1547B7,
+                    Address_JP = 0x1547B7,
+                    Address_US = 0x153453,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1214,7 +1321,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - west of teleport room [top left chest]",
-                    Address = 0x1547BA,
+                    Address_JP = 0x1547BA,
+                    Address_US = 0x153456,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1225,7 +1333,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - west of teleport room [top right chest]",
-                    Address = 0x1547BD,
+                    Address_JP = 0x1547BD,
+                    Address_US = 0x153459,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1236,7 +1345,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom left chest]",
-                    Address = 0x1547C0,
+                    Address_JP = 0x1547C0,
+                    Address_US = 0x15345C,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1247,7 +1357,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - west of teleport room [bottom right chest]",
-                    Address = 0x1547C3,
+                    Address_JP = 0x1547C3,
+                    Address_US = 0x15345F,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1258,7 +1369,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - north of teleport room",
-                    Address = 0x1547C6,
+                    Address_JP = 0x1547C6,
+                    Address_US = 0x153462,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1269,7 +1381,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - map room",
-                    Address = 0x1547C9,
+                    Address_JP = 0x1547C9,
+                    Address_US = 0x153465,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1280,7 +1393,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - big chest",
-                    Address = 0x1547CC,
+                    Address_JP = 0x1547CC,
+                    Address_US = 0x153468,
                     BigKeyNeeded = true,
                     KeysNeeded = 2,
                     CanAccess =
@@ -1292,7 +1406,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [left chest]",
-                    Address = 0x1547CF,
+                    Address_JP = 0x1547CF,
+                    Address_US = 0x15346B,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1302,7 +1417,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - down right staircase from entrance [right chest]",
-                    Address = 0x1547D2,
+                    Address_JP = 0x1547D2,
+                    Address_US = 0x15346E,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1312,7 +1428,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - above Armos",
-                    Address = 0x1547D5,
+                    Address_JP = 0x1547D5,
+                    Address_US = 0x153471,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1323,7 +1440,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - east of down right staircase from entrace",
-                    Address = 0x1547D8,
+                    Address_JP = 0x1547D8,
+                    Address_US = 0x153474,
                     CanAccess =
                         have =>
                         CanEnterGanonsTower(have),
@@ -1333,7 +1451,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - compass room [top left chest]",
-                    Address = 0x1547DB,
+                    Address_JP = 0x1547DB,
+                    Address_US = 0x153477,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1344,7 +1463,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - compass room [top right chest]",
-                    Address = 0x1547DE,
+                    Address_JP = 0x1547DE,
+                    Address_US = 0x15347A,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1355,7 +1475,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - compass room [bottom left chest]",
-                    Address = 0x1547E1,
+                    Address_JP = 0x1547E1,
+                    Address_US = 0x15347D,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1366,7 +1487,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-1F] Ganon's Tower - compass room [bottom right chest]",
-                    Address = 0x1547E4,
+                    Address_JP = 0x1547E4,
+                    Address_US = 0x153480,
                     KeysNeeded = 1,
                     CanAccess =
                         have =>
@@ -1377,7 +1499,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-B1] Ganon's Tower - north of Armos room [bottom chest]",
-                    Address = 0x1547E7,
+                    Address_JP = 0x1547E7,
+                    Address_US = 0x153483,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1388,7 +1511,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-B1] Ganon's Tower - north of Armos room [left chest]",
-                    Address = 0x1547EA,
+                    Address_JP = 0x1547EA,
+                    Address_US = 0x153486,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1399,7 +1523,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-B1] Ganon's Tower - north of Armos room [right chest]",
-                    Address = 0x1547ED,
+                    Address_JP = 0x1547ED,
+                    Address_US = 0x153489,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1411,7 +1536,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top left chest]",
-                    Address = 0x1547F3,
+                    Address_JP = 0x1547F3,
+                    Address_US = 0x15348F,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -1422,7 +1548,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-6F] Ganon's Tower - north of falling floor four torches [top right chest]",
-                    Address = 0x1547F6,
+                    Address_JP = 0x1547F6,
+                    Address_US = 0x153492,
                     BigKeyNeeded = true,
                     CanAccess =
                         have =>
@@ -1433,7 +1560,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-6F] Ganon's Tower - before Moldorm",
-                    Address = 0x1547F9,
+                    Address_JP = 0x1547F9,
+                    Address_US = 0x153495,
                     KeysNeeded = 1,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -1445,7 +1573,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.GanonsTower,
                     Name = "[dungeon-A2-6F] Ganon's Tower - Moldorm room",
-                    Address = 0x1547FC,
+                    Address_JP = 0x1547FC,
+                    Address_US = 0x153498,
                     KeysNeeded = 2,
                     BigKeyNeeded = true,
                     CanAccess =
@@ -1457,7 +1586,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B3] Hyrule Castle - next to Zelda",
-                    Address = 0x1547FF,
+                    Address_JP = 0x1547FF,
+                    Address_US = 0x15349B,
                     KeysNeeded = 2,
                     CanAccess =
                         have =>
@@ -1468,7 +1598,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Hyrule Castle - map room",
-                    Address = 0x154802,
+                    Address_JP = 0x154802,
+                    Address_US = 0x15349E,
                     CanAccess =
                         have =>
                         true,
@@ -1478,7 +1609,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-022-B1] Thief's hut [top chest]",
-                    Address = 0x154805,
+                    Address_JP = 0x154805,
+                    Address_US = 0x1534A1,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1488,7 +1620,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-022-B1] Thief's hut [top left chest]",
-                    Address = 0x154808,
+                    Address_JP = 0x154808,
+                    Address_US = 0x1534A4,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1498,7 +1631,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-022-B1] Thief's hut [top right chest]",
-                    Address = 0x15480B,
+                    Address_JP = 0x15480B,
+                    Address_US = 0x1534A7,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1508,7 +1642,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-022-B1] Thief's hut [bottom left chest]",
-                    Address = 0x15480E,
+                    Address_JP = 0x15480E,
+                    Address_US = 0x1534AA,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1518,7 +1653,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-022-B1] Thief's hut [bottom right chest]",
-                    Address = 0x154811,
+                    Address_JP = 0x154811,
+                    Address_US = 0x1534AD,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1528,7 +1664,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-073] cave northeast of swamp palace [top chest]",
-                    Address = 0x154814,
+                    Address_JP = 0x154814,
+                    Address_US = 0x1534B0,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -1538,7 +1675,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-073] cave northeast of swamp palace [top middle chest]",
-                    Address = 0x154817,
+                    Address_JP = 0x154817,
+                    Address_US = 0x1534B3,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -1548,7 +1686,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-073] cave northeast of swamp palace [bottom middle chest]",
-                    Address = 0x15481A,
+                    Address_JP = 0x15481A,
+                    Address_US = 0x1534B6,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -1558,7 +1697,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-073] cave northeast of swamp palace [bottom chest]",
-                    Address = 0x15481D,
+                    Address_JP = 0x15481D,
+                    Address_US = 0x1534B9,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -1568,7 +1708,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-1F] Death Mountain - wall of caves - right cave [top left chest]",
-                    Address = 0x154820,
+                    Address_JP = 0x154820,
+                    Address_US = 0x1534BC,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1581,7 +1722,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-1F] Death Mountain - wall of caves - right cave [top left middle chest]",
-                    Address = 0x154823,
+                    Address_JP = 0x154823,
+                    Address_US = 0x1534BF,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1594,7 +1736,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-1F] Death Mountain - wall of caves - right cave [top right middle chest]",
-                    Address = 0x154826,
+                    Address_JP = 0x154826,
+                    Address_US = 0x1534C2,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1607,7 +1750,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-1F] Death Mountain - wall of caves - right cave [top right chest]",
-                    Address = 0x154829,
+                    Address_JP = 0x154829,
+                    Address_US = 0x1534C5,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1620,7 +1764,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-1F] Death Mountain - wall of caves - right cave [bottom chest]",
-                    Address = 0x15482C,
+                    Address_JP = 0x15482C,
+                    Address_US = 0x1534C8,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1633,7 +1778,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-B1] Death Mountain - wall of caves - right cave [left chest]",
-                    Address = 0x15482F,
+                    Address_JP = 0x15482F,
+                    Address_US = 0x1534CB,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1646,7 +1792,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-009-B1] Death Mountain - wall of caves - right cave [right chest]",
-                    Address = 0x154832,
+                    Address_JP = 0x154832,
+                    Address_US = 0x1534CE,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have)
@@ -1659,7 +1806,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-016] cave under rocks west of Santuary",
-                    Address = 0x154835,
+                    Address_JP = 0x154835,
+                    Address_US = 0x1534D1,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -1670,7 +1818,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-050] cave southwest of Lake Hylia [bottom left chest]",
-                    Address = 0x154838,
+                    Address_JP = 0x154838,
+                    Address_US = 0x1534D4,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1680,7 +1829,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-050] cave southwest of Lake Hylia [top left chest]",
-                    Address = 0x15483B,
+                    Address_JP = 0x15483B,
+                    Address_US = 0x1534D7,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1690,7 +1840,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-050] cave southwest of Lake Hylia [top right chest]",
-                    Address = 0x15483E,
+                    Address_JP = 0x15483E,
+                    Address_US = 0x1534DA,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1700,7 +1851,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-050] cave southwest of Lake Hylia [bottom right chest]",
-                    Address = 0x154841,
+                    Address_JP = 0x154841,
+                    Address_US = 0x1534DD,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1710,7 +1862,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "[cave-051] Ice Cave",
-                    Address = 0x154844,
+                    Address_JP = 0x154844,
+                    Address_US = 0x1534E0,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
@@ -1720,7 +1873,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-056] Dark World Death Mountain - cave under boulder [top right chest]",
-                    Address = 0x154847,
+                    Address_JP = 0x154847,
+                    Address_US = 0x1534E3,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have)
@@ -1731,7 +1885,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-056] Dark World Death Mountain - cave under boulder [top left chest]",
-                    Address = 0x15484A,
+                    Address_JP = 0x15484A,
+                    Address_US = 0x1534E6,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have)
@@ -1742,7 +1897,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-056] Dark World Death Mountain - cave under boulder [bottom left chest]",
-                    Address = 0x15484D,
+                    Address_JP = 0x15484D,
+                    Address_US = 0x1534E9,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have)
@@ -1753,7 +1909,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = true,
                     Region = Region.DarkWorld,
                     Name = "[cave-056] Dark World Death Mountain - cave under boulder [bottom right chest]",
-                    Address = 0x154850,
+                    Address_JP = 0x154850,
+                    Address_US = 0x1534EC,
                     CanAccess =
                         have =>
                         CanAccessEastDarkWorldDeathMountain(have)
@@ -1766,7 +1923,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Escape - final basement room [left chest]",
-                    Address = 0x154853,
+                    Address_JP = 0x154853,
+                    Address_US = 0x1534EF,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1778,7 +1936,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Escape - final basement room [middle chest]",
-                    Address = 0x154856,
+                    Address_JP = 0x154856,
+                    Address_US = 0x1534F2,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
@@ -1790,14 +1949,14 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.HyruleCastleEscape,
                     Name = "[dungeon-C-B1] Escape - final basement room [right chest]",
-                    Address = 0x154859,
+                    Address_JP = 0x154859,
+                    Address_US = 0x1534F5,
                     KeysNeeded = 4,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
                         && have.Contains(ItemType.PowerGlove),
                 },
-
                 //// Getting anything other than the sword here can be bad for progress... may as well keep the sword here since you can't use it if you get it before the uncle.
                 //new Location
                 //{
@@ -1805,7 +1964,8 @@ namespace AlttpRandomizer.Rom
                 //    UniqueItemOnly = true,
                 //    Region = Region.LightWorld,
                 //    Name = "Uncle",
-                //    Address = 0x2DF45,
+                //    Address_JP = 0x2DF45,
+                //    Address_US = 0xD23BA,
                 //    CanAccess =
                 //        have =>
                 //        true,
@@ -1815,18 +1975,20 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Bottle Vendor",
-                    Address = 0x2EB18,
+                    Address_JP = 0xD23BA,
+                    Address_US = 0xD15D0,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
                 },
-                new Location
+                /*new Location
                 {
                     LateGameItem = false,
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Sahasrahla",
-                    Address = 0x2F1FC,
+                    Address_JP = 0x2F1FC,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanDefeatEasternPalace(have),
@@ -1843,7 +2005,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.DarkWorld,
                     Name = "Flute Boy",
-                    Address = 0x330C7,
+                    Address_JP = 0x330C7,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
@@ -1889,7 +2052,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Sick Kid",
-                    Address = 0x339CF,
+                    Address_JP = 0x339CF,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -1906,7 +2070,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Purple Chest",
-                    Address = 0x33D68,
+                    Address_JP = 0x33D68,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have)
@@ -1917,7 +2082,8 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Hobo",
-                    Address = 0x33E7D,
+                    Address_JP = 0x33E7D,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -1929,7 +2095,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.DarkWorld,
                     Name = "Catfish",
-                    Address = 0xEE185,
+                    Address_JP = 0xEE185,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanAccessPyramid(have)
@@ -1952,7 +2119,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "King Zora",
-                    Address = 0xEE1C3,
+                    Address_JP = 0xEE1C3,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -1973,7 +2141,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Old mountain man",
-                    Address = 0xF69FA,
+                    Address_JP = 0xF69FA,
+                    Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         CanClimbDeathMountain(have),
@@ -2027,7 +2196,9 @@ namespace AlttpRandomizer.Rom
         private bool CanEnterHyruleCastleTower(List<ItemType> have)
         {
             return (CanGetMasterSword(have))
-                || (have.Contains(ItemType.Cape));
+                || (have.Contains(ItemType.L2Sword))
+                || (have.Contains(ItemType.L3Sword))
+                || (have.Contains(ItemType.L4Sword));
         }
 
         private bool CanGetMasterSword(List<ItemType> have)
@@ -2338,7 +2509,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.CaneOfSomaria,
                 ItemType.FireRod,
                 ItemType.Flippers,
-                //ItemType.Hammer,
+                ItemType.Hammer,
                 ItemType.Hookshot,
                 ItemType.IceRod,
                 //ItemType.Lamp,
@@ -2350,7 +2521,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Shovel,
                 //ItemType.TitansMitt,
                 ItemType.BlueMail,
-                //ItemType.Boomerang,
+                ItemType.Boomerang,
                 ItemType.BugCatchingNet,
                 ItemType.Cape,
                 //ItemType.MirrorShield,
