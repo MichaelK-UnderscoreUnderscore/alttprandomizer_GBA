@@ -205,16 +205,7 @@ namespace AlttpRandomizer
 
 		private void btnReport_Click(object sender, EventArgs e)
 		{
-		    if (output.Text.Contains("RandomizationException"))
-		    {
-                var title = Uri.EscapeUriString(output.Text.Substring(47, output.Text.IndexOf(" --->", StringComparison.Ordinal) - 47));
-                var message = Uri.EscapeUriString(output.Text.Substring(0, output.Text.IndexOf("   at", StringComparison.Ordinal)));
-                Help.ShowHelp(null, string.Format("https://gitreports.com/issue/Dessyreqt/alttprandomizer?issue_title=[v{0}]%20{1}&details=[v{0}]%0A%0A{2}", RandomizerVersion.CurrentDisplay, title, message));
-            }
-            else
-		    {
-                Help.ShowHelp(null, string.Format("https://gitreports.com/issue/Dessyreqt/alttprandomizer?issue_title=[v{0}]%20Anonymous%20Issue&details=[v{0}]%0A%0A", RandomizerVersion.CurrentDisplay));
-            }
+            Help.ShowHelp(null, string.Format("https://github.com/MichaelK-UnderscoreUnderscore/alttprandomizer_GBA/issues"));
         }
 
 		private void MainForm_Load(object sender, EventArgs e)
