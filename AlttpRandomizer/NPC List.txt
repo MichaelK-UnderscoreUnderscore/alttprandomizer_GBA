@@ -1,44 +1,63 @@
 ﻿(jp)
 (us)
 ------
-D23BA - Bottle Vendor 
-D15D0
+0D23BA - Bottle Vendor 
+0D15E2
 ------
-D376E ?? Stumpy
-D2996
+0D376E - Stumpy
+0D2996
 ------
-D4708 ?? Smith
-D3930
+0D4708 - Smith
+0D3930
 ------
-D5644 ?? Pedestal
-D4854
+0D5644 ?? Pedestal
+0D4854
 ------
-D8A02 ?? Book (Library)
-D7C12
+0D8A02 - Book (Library)
+0D7C12
 ------
-DD18C ?? Sick Kid
-DC310
+0DD18C - Sick Kid
+0DC316
 ------
-DDD10 - Old Man
-DCE9A
+0DDD10 - Old Man
+0DCE9A
 ------
-DE44E ?? Purple Chest, Hobo? Likely Chest
-DD5D6
+0DE44E - Hobo
+0DD5D6
 ------
-DF4FA ?? Sahasrahamanata
-DE682
+0DF4FA ?? Sahasrahamanata
+0DE682
 ------
-F28E0 ?? Purple Chest, Hobo? Likely Chest
-F19C6
+0F28E0 - Purple Chest
+0F19C4 
 ------
-F36CA ?? Boss Heart? // 26 //
-F27AE
+0F36CA ?? Boss Heart? // 26 //
+0F27AE
 ------
-F383A ?? Boss Hearts Again? // 3E //
-F291E
+0F383A ?? Boss Hearts Again? // 3E //
+0F291E
 ------
-F3892 ?? Boss Hearts Again? // 26 //
-F2978
+0F3892 ?? Boss Hearts Again? // 26 //
+0F2976
+------
+0F6534 - Mushroom
+0F5618
+------
+110B4E - Powder
+10FBA6
+------
+1151C6 ?? // 52 //
+1141FE 
+------
+
+------
+
+------
+
+------
+
+------
+
 ------
 
 ------
@@ -48,3 +67,41 @@ F2978
 
 // this line is for the Item Give I think? seems to work so far
 bl sub_080A1588
+
+
+-Bottle Vendor
+-Sick Kid
+-Saha
+Mini Moldorm
+Hype Cave
+-Purple Chest
+-Hobo
+-Smith
+-Ped
+-Old Man
+Uncle
+Catfish
+Zora
+Magic Bat
+-Stumpy
+
+Bombos
+Ether
+-Shroom
+-Powder
+-Book
+
+Mire Med
+TR Med
+
+
+Item Location:
+Uncle		/ 0x00
+Bombos		/ 0x0F
+Ether		/ 0x10
+
+Item Checks:	Location  Check Value
+Uncle 		/ ??    / 0x3D
+Stumpy		/ D2996 / 0x32
+Bombos		/ ??    / 0x28
+Ether		/ ??    / 0x29

@@ -13,7 +13,7 @@ namespace AlttpRandomizer.Rom
     {
         public List<Location> Locations { get; set; }
         public string DifficultyName => "NoLogic";
-        public string SeedFileString => "{0:0000000}";
+        public string SeedFileString => "NL{0:0000000}";
         public string SeedRomString => "Z3Rv{0} NoLogic{1}";
 
         public void ResetLocations()

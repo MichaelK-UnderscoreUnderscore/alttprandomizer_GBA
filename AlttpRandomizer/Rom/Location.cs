@@ -39,7 +39,7 @@ namespace AlttpRandomizer.Rom
         public int KeysNeeded { get; set; }
         public bool BigKeyNeeded { get; set; }
         public Access CanAccess { get; set; }
-        public Action<FileStream, ItemType> WriteItemCheck { get; set; }
+        public Action<FileStream, ItemType, bool> WriteItemCheck { get; set; }
         public Item Item { get; set; }
         public Region Region { get; set; }
     }

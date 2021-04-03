@@ -138,6 +138,10 @@ namespace AlttpRandomizer
         {
             RandomizerDifficulty difficulty;
 
+            if (seed.Text.ElementAt(0) == 'C')
+                randomizerDifficulty.SelectedIndex = 0;
+            else if(seed.Text.ElementAt(0) == 'N' && seed.Text.ElementAt(1) == 'L')
+                randomizerDifficulty.SelectedIndex = 1;
 
             switch (randomizerDifficulty.SelectedItem.ToString())
             {

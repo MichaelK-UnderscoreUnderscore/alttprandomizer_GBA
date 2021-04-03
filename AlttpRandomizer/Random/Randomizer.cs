@@ -348,7 +348,7 @@ namespace AlttpRandomizer.Random
 
                     rom.Write(new [] { newItem }, 0, 1);
 
-                    location.WriteItemCheck?.Invoke(rom, location.Item.Type);
+                    location.WriteItemCheck?.Invoke(rom, location.Item.Type, romRegion);
                 }
 
 				WriteSeedInRom(rom);

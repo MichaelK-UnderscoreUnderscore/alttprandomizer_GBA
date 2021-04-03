@@ -112,91 +112,93 @@ namespace AlttpRandomizer.Rom
                 case ItemType.Bow:
                 case ItemType.BowAndArrows:
                 case ItemType.BowAndSilverArrows:
-                    retVal = 0x40;
+                    retVal = 0x20;
                     break;
                 case ItemType.Boomerang:
                 case ItemType.RedBoomerang:
-                    retVal = 0x41;
+                    retVal = 0x21;
                     break;
                 case ItemType.Hookshot:
-                    retVal = 0x42;
+                    retVal = 0x22;
                     break;
                 case ItemType.Mushroom:
                 case ItemType.Powder:
-                    retVal = 0x44;
+                    retVal = 0x24;
                     break;
                 case ItemType.FireRod:
-                    retVal = 0x45;
+                    retVal = 0x26;
                     break;
                 case ItemType.IceRod:
-                    retVal = 0x46;
+                    retVal = 0x27;
                     break;
                 case ItemType.Bombos:
-                    retVal = 0x47;
+                    retVal = 0x28;
                     break;
                 case ItemType.Ether:
-                    retVal = 0x48;
+                    retVal = 0x29;
                     break;
                 case ItemType.Quake:
-                    retVal = 0x49;
+                    retVal = 0x2A;
                     break;
                 case ItemType.Lamp:
-                    retVal = 0x4a;
+                    retVal = 0x2C;
                     break;
                 case ItemType.Hammer:
-                    retVal = 0x4b;
+                    retVal = 0x2D;
                     break;
-                case ItemType.Shovel:
                 case ItemType.OcarinaActive:
                 case ItemType.OcarinaInactive:
-                    retVal = 0x4c;
+                    retVal = 0x2E;
                     break;
                 case ItemType.BugCatchingNet:
-                    retVal = 0x4d;
+                    retVal = 0x2F;
                     break;
                 case ItemType.BookOfMudora:
-                    retVal = 0x4e;
+                    retVal = 0x30;
+                    break;
+                case ItemType.Shovel:
+                    retVal = 0x32;
                     break;
                 case ItemType.CaneOfSomaria:
-                    retVal = 0x50;
+                    retVal = 0x33;
                     break;
                 case ItemType.StaffOfByrna:
-                    retVal = 0x51;
+                    retVal = 0x34;
                     break;
                 case ItemType.Cape:
-                    retVal = 0x52;
+                    retVal = 0x35;
                     break;
                 case ItemType.MagicMirror:
-                    retVal = 0x53;
+                    retVal = 0x36;
                     break;
                 case ItemType.PowerGlove:
                 case ItemType.TitansMitt:
-                    retVal = 0x54;
+                    retVal = 0x38;
                     break;
                 case ItemType.PegasusBoots:
-                    retVal = 0x55;
+                    retVal = 0x39;
                     break;
                 case ItemType.Flippers:
-                    retVal = 0x56;
+                    retVal = 0x3A;
                     break;
                 case ItemType.MoonPearl:
-                    retVal = 0x57;
+                    retVal = 0x3B;
                     break;
                 case ItemType.L1Sword:
                 case ItemType.L1SwordAndShield:
                 case ItemType.L2Sword:
                 case ItemType.L3Sword:
                 case ItemType.L4Sword:
-                    retVal = 0x59;
+                    retVal = 0x3D;
                     break;
                 case ItemType.BlueShield:
                 case ItemType.RedShield:
                 case ItemType.MirrorShield:
-                    retVal = 0x5a;
+                    retVal = 0x3E;
                     break;
                 case ItemType.BlueMail:
                 case ItemType.RedMail:
-                    retVal = 0x5b;
+                    retVal = 0x3F;
                     break;
                 default:
                     throw new ArgumentException("Item must be a unique item.", "item");
