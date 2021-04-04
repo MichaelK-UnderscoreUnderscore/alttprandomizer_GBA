@@ -261,14 +261,25 @@ namespace AlttpRandomizer
                 switch (hash)
                 {
                     case "8E91CD13":
+                        output.Text = hash + Environment.NewLine +
+                            "American Release";
                         romRegion = false;
                         romImage = rom;
                         create.Enabled = true;
                         break;
                     case "81E42BEE":
+                        output.Text = hash + Environment.NewLine +
+                            "Japanese Release" + Environment.NewLine +
+                            "This Version will work in current and near future Versions," + Environment.NewLine +
+                            "but will eventually be removed in favor of focusing on the US release.";
                         romRegion = true;
                         romImage = rom;
                         create.Enabled = true;
+                        break;
+                    case "5A164321 ":
+                        output.Text = hash + Environment.NewLine +
+                            "This is the PAL release of the Game and not supported in this randomizer." + Environment.NewLine +
+                            "Please use a Rom with either \"8E91CD13\" (US) or \"81E42BEE\" as CRC32 Hash.";
                         break;
                     default:
                         output.Text = hash + Environment.NewLine +
