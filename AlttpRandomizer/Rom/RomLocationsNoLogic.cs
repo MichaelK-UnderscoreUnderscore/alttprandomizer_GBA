@@ -287,6 +287,7 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
+                    Item = new Item(ItemType.PegasusBoots),
                 },
                 new Location
                 {
@@ -2566,7 +2567,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Lamp,
                 ItemType.Lamp,
                 // ItemType.L1SwordAndShield,
-                // ItemType.MagicMirror,
+                ItemType.MagicMirror,
                 ItemType.MoonPearl,
                 ItemType.PegasusBoots,
                 ItemType.BookOfMudora,

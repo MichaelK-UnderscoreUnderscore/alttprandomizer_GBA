@@ -46,7 +46,7 @@ namespace AlttpRandomizer.Random
 
                 GenerateItemList();
                 GenerateDungeonItems();
-                GenerateItemPositions();
+                GenerateItemPositions(spoilerOnly);
 
 		        if (spoilerOnly)
 		        {
@@ -391,14 +391,14 @@ namespace AlttpRandomizer.Random
 			return retVal;
 		}
 
-		private void GenerateItemPositions()
+		private void GenerateItemPositions(bool spoiler)
 		{
-			int count = 0;
 			do
 			{
-				count++;
 				try
 				{
+					if (spoiler)																// Add a change between spoiler and non spoiler
+						random.Next(int.MaxValue);
 
 					var currentLocations = romLocations.GetAvailableLocations(haveItems);
 					var tempItems = new List<ItemType>();
@@ -419,6 +419,9 @@ namespace AlttpRandomizer.Random
 
 					while (tempItems.Count > tempItems2.Count)                                  // Collect all Items reachable with test Item pool
 					{
+						if (spoiler)                                                            // Add a change between spoiler and non spoiler
+							random.Next(int.MaxValue);
+
 						tempItems2.Clear();
 						tempItems2 = tempItems.ToList();
 						var x = romLocations.GetInLogicItems(tempItems);
@@ -440,6 +443,9 @@ namespace AlttpRandomizer.Random
 					bool loc = true;
 					while (loc)
 					{
+						if (spoiler)                                                                                                                            // Add a change between spoiler and non spoiler// Add a change between spoiler and non spoiler
+							random.Next(int.MaxValue);
+
 						int randLT = random.Next(locList.Count);                                // Find a Random Location we can throw our Item in
 						if (romLocations.isLocationEarly(locList[randLT]))                      // but first test if the Location is coming to early
 							continue;
