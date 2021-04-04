@@ -1877,24 +1877,27 @@ namespace AlttpRandomizer.Rom
                         have =>
                         CanEscapeCastle(have),
                 },
-                //// Getting anything other than the sword here can be bad for progress... may as well keep the sword here since you can't use it if you get it before the uncle.
-                //new Location
-                //{
-                //    LateGameItem = false,
-                //    UniqueItemOnly = true,
-                //    Region = Region.LightWorld,
-                //    Name = "Uncle",
-                //    Address = 0x2DF45,
-                //    CanAccess =
-                //        have =>
-                //        true,
-                //},
-                /*new Location
+                /*
+                // Getting anything other than the sword here can be bad for progress... may as well keep the sword here since you can't use it if you get it before the uncle.
+                new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Uncle",
+                    Address_JP = 0x2DF45,
+                    Address_US = 0xD23BA,
+                    CanAccess =
+                        have =>
+                        true,
+                },*/  // Item Checks + Location
+                new Location
                 {
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Bottle Vendor",
-                    Address = 0x2EB18,
+                    Address_JP = 0xD23BA,
+                    Address_US = 0xD15E2,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -1905,35 +1908,55 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Sahasrahla",
-                    Address = 0x2F1FC,
+                    Address_JP = 0xDF4FA,
+                    Address_US = 0xDE682,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have),
                     WriteItemCheck =
-                        (rom, item) =>
+                        (rom, item, romRegion) =>
                         {
-                            rom.Seek(0x2F178, SeekOrigin.Begin);
+                            rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
                         }
                 },
-                new Location
+                /*new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Grove Digging",
+                    Address_JP = 0xDF4FA,
+                    Address_US = 0xDE682,
+                    CanAccess =
+                        have =>
+                        CanEscapeCastle(have),
+                    WriteItemCheck =
+                        (rom, item, romRegion) =>
+                        {
+                            rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
+                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                        }
+                },*/ // Item Checks (0x2E) + Location (0x14)
+                new Location // Considering to banish this guy out of my game, dumb stumb kid.
                 {
                     LateGameItem = false,
                     UniqueItemOnly = true,
                     Region = Region.DarkWorld,
                     Name = "Flute Boy",
-                    Address = 0x330C7,
+                    Address_JP = 0xD376E,
+                    Address_US = 0xD2996,
                     CanAccess =
                         have =>
-                        CanAccessLowerDarkWorld(have),
-                    WriteItemCheck =
-                        (rom, item) =>
+                        CanEscapeCastle(have),
+                    Item = new Item(ItemType.Nothing),
+                    /*WriteItemCheck =
+                        (rom, item, romRegion) =>
                         {
                             rom.Seek(0x31096, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
-                            //rom.Seek(0x32F9C, SeekOrigin.Begin);
-                            //rom.Write(Item.GetCheckLocation(item), 0, 1);
-                            rom.Seek(0x33063, SeekOrigin.Begin);
+
+                            rom.Seek(0xD2870  0x33063, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
 
                             var compList = new List<ItemType>
@@ -1947,20 +1970,21 @@ namespace AlttpRandomizer.Rom
                                 ItemType.TitansMitt,
                                 ItemType.RedShield,
                                 ItemType.RedMail,
+                                ItemType.Shovel,
                             };
 
                             if (!compList.Contains(item))
                             {
-                                rom.Seek(0x33067, SeekOrigin.Begin);
+                                rom.Seek(0xD2160, SeekOrigin.Begin);
                                 rom.Write(new []{ (byte)0x01 }, 0, 1);
                             }
 
-                            if (item == ItemType.MirrorShield || item == ItemType.OcarinaActive ||  item == ItemType.Shovel)
+                            if (item == ItemType.MirrorShield || item == ItemType.OcarinaActive)
                             {
                                 rom.Seek(0x33067, SeekOrigin.Begin);
                                 rom.Write(new []{ (byte)0x03 }, 0, 1);
                             }
-                        }
+                        }*/
                 },
                 new Location
                 {
@@ -1968,15 +1992,15 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Sick Kid",
-                    Address = 0x339CF,
+                    Address_JP = 0xDD18C,
+                    Address_US = 0xDC316,
                     CanAccess =
                         have =>
-                        CanEscapeCastle(have)
-                        && have.Contains(ItemType.Bottle),
+                        CanEscapeCastle(have),
                     WriteItemCheck =
-                        (rom, item) =>
+                        (rom, item, romRegion) =>
                         {
-                            rom.Seek(0x30D87, SeekOrigin.Begin);
+                            rom.Seek(romRegion ? 0xDD128 : 0xDC2B0, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
                         }
                 },
@@ -1985,22 +2009,22 @@ namespace AlttpRandomizer.Rom
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Purple Chest",
-                    Address = 0x33D68,
+                    Address_JP = 0xF28E0,
+                    Address_US = 0xF19C4,
                     CanAccess =
                         have =>
-                        CanAccessLowerDarkWorld(have)
-                        && have.Contains(ItemType.TitansMitt),
+                        CanEscapeCastle(have),
                 },
                 new Location
                 {
                     LateGameItem = false,
                     Region = Region.LightWorld,
                     Name = "Hobo",
-                    Address = 0x33E7D,
+                    Address_JP = 0xDE44E,
+                    Address_US = 0xDD5D6,
                     CanAccess =
                         have =>
-                        CanEscapeCastle(have)
-                        && have.Contains(ItemType.Flippers),
+                        CanEscapeCastle(have),
                 },
                 new Location
                 {
@@ -2008,41 +2032,33 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.DarkWorld,
                     Name = "Catfish",
-                    Address = 0xEE185,
+                    Address_JP = 0x10621A,
+                    Address_US = 0x10529E,
                     CanAccess =
                         have =>
-                        CanAccessPyramid(have)
-                        && have.Contains(ItemType.PowerGlove)
-                        && (have.Contains(ItemType.PegasusBoots)
-                            || have.Contains(ItemType.TitansMitt)),
+                        CanEscapeCastle(have),
                     WriteItemCheck =
-                        (rom, item) =>
+                        (rom, item, romRegion) =>
                         {
-                            rom.Seek(0xEE103, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
-                            rom.Seek(0xEE11D, SeekOrigin.Begin);
+                            rom.Seek(romRegion ? 0xDD038 : 0xF79A0, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
                         }
                 },
-                //// Zora's appearance is based on if you have flippers or not
                 new Location
                 {
                     LateGameItem = false,
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "King Zora",
-                    Address = 0xEE1C3,
+                    Address_JP = 0xEA8C4,
+                    Address_US = 0x39938,
                     CanAccess =
                         have =>
-                        CanEscapeCastle(have)
-                        && ((have.Contains(ItemType.PowerGlove)
-                                && (have.Contains(ItemType.PegasusBoots)
-                                    || have.Contains(ItemType.TitansMitt)))
-                            || have.Contains(ItemType.Flippers)),
+                        CanEscapeCastle(have),
                     WriteItemCheck =
-                        (rom, item) =>
+                        (rom, item, romRegion) =>
                         {
-                            rom.Seek(0x30F17, SeekOrigin.Begin);
+                            rom.Seek(romRegion ? 0xEA8C4 : 0xE99B0, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
                         }
                 },
@@ -2052,18 +2068,16 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Old mountain man",
-                    Address = 0xF69FA,
+                    Address_JP = 0xDDD10,
+                    Address_US = 0xDCE9A,
                     CanAccess =
                         have =>
-                        CanClimbDeathMountain(have),
+                        CanEscapeCastle(have),
                     WriteItemCheck =
-                        (rom, item) =>
+                        (rom, item, romRegion) =>
                         {
-                            // this is for the bit that lets you choose where to start in the light world
-                            rom.Seek(0x100F3, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
                             // old man check
-                            rom.Seek(0xF690B, SeekOrigin.Begin);
+                            rom.Seek(romRegion ? 0xDDC64 : 0xDCDEC, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
 
                             var compList = new List<ItemType>
@@ -2081,25 +2095,99 @@ namespace AlttpRandomizer.Rom
 
                             if (!compList.Contains(item))
                             {
-                                // this is for the bit that lets you choose where to start in the light world
-                                rom.Seek(0x100F7, SeekOrigin.Begin);
-                                rom.Write(new []{ (byte)0x01 }, 0, 1);
                                 // old man check
-                                rom.Seek(0xF690F, SeekOrigin.Begin);
+                                rom.Seek(romRegion ? 0xDDC54 : 0xDCDDC, SeekOrigin.Begin);
                                 rom.Write(new []{ (byte)0x01 }, 0, 1);
                             }
 
                             if (item == ItemType.MirrorShield || item == ItemType.OcarinaActive)
                             {
-                                // this is for the bit that lets you choose where to start in the light world
-                                rom.Seek(0x100F7, SeekOrigin.Begin);
-                                rom.Write(new []{ (byte)0x03 }, 0, 1);
                                 // old man check
-                                rom.Seek(0xF690F, SeekOrigin.Begin);
+                                rom.Seek(romRegion ? 0xDDC54 : 0xDCDDC, SeekOrigin.Begin);
                                 rom.Write(new []{ (byte)0x03 }, 0, 1);
                             }
                         }
-                },*/
+                },
+                new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Library",
+                    Address_JP = 0xD8A02,
+                    Address_US = 0xD7C12,
+                    CanAccess =
+                        have =>
+                        CanEscapeCastle(have),
+                    WriteItemCheck =
+                        (rom, item, romRegion) =>
+                        {
+                            rom.Seek(romRegion ? 0xD81C0 : 0xD73D0, SeekOrigin.Begin);
+                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                        }
+                },
+                new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Mushroom",
+                    Address_JP = 0xF6534,
+                    Address_US = 0xF5618,
+                    CanAccess =
+                        have =>
+                        CanEscapeCastle(have),
+                    WriteItemCheck =
+                        (rom, item, romRegion) =>
+                        {
+                            rom.Seek(romRegion ? 0xF64A4 : 0xF5588, SeekOrigin.Begin);
+                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+
+                            var compList = new List<ItemType>
+                            {
+                                ItemType.Bow,
+                                ItemType.BowAndArrows,
+                                ItemType.RedBoomerang,
+                                ItemType.Powder,
+                                ItemType.OcarinaInactive,
+                                ItemType.MagicMirror,
+                                ItemType.TitansMitt,
+                                ItemType.RedShield,
+                                ItemType.RedMail,
+                            };
+
+                            if (!compList.Contains(item))
+                            {
+                                rom.Seek(romRegion ? 0xF64A7 : 0xF558B, SeekOrigin.Begin);
+                                rom.Write(new []{ (byte)0x01 }, 0, 1);
+                            }
+
+                            if (item == ItemType.MirrorShield || item == ItemType.OcarinaActive)
+                            {
+                                rom.Seek(romRegion ? 0xF64A7 : 0xF558B, SeekOrigin.Begin);
+                                rom.Write(new []{ (byte)0x03 }, 0, 1);
+                            }
+                        }
+                },
+                // Should probably stay Powder Slot Sharing with Shroom.
+                /*new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Powder",
+                    Address_JP = 0x110B4E,
+                    Address_US = 0x10FBA6,
+                    CanAccess =
+                        have =>
+                        CanEscapeCastle(have),
+                    WriteItemCheck =
+                        (rom, item, romRegion) =>
+                        {
+                            rom.Seek(0xEE103, SeekOrigin.Begin);
+                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                        }
+                },*/ // Item Checks 
             };
         }
 
@@ -2334,23 +2422,93 @@ namespace AlttpRandomizer.Rom
             return retVal;
         }
 
+        public List<ItemType> GetInLogicItems(List<ItemType> have)
+        {
+            var retVal = new List<ItemType>();
+
+            foreach (Location location in Locations)
+            {
+                if (location.Item != null && location.CanAccess(have))
+                    retVal.Add(location.Item.Type);
+            }
+
+            foreach (ItemType item in GetImplicitProgressionItems(have))
+            {
+                retVal.Add(item);
+            }
+
+            return retVal;
+        }
+        public bool isItemEarly(ItemType item, List<ItemType> have)
+        {
+            if (IsLateGameItem(item))                           // Place Late Game Items first into late game spots.
+                return false;
+
+            int countUnique = 0;
+            foreach (ItemType it in have)
+            {
+                if (IsLateGameItem(it))                         // If there are still Late Game Items Left, wait till those are out
+                    return true;
+                if (GetUniqueItems().Contains(it))
+                    countUnique++;
+            }
+
+            return                                              // If there are either no Unique Items Left to be placed or the Item is Unique, It's good.
+                !(GetUniqueItems().Contains(item) || countUnique == 0);
+        }
+
+        public bool isLocationEarly(Location loc)
+        {
+            int countUnique = 0;
+            foreach (Location lt in Locations)
+            {
+                if (lt.Item == null && lt.UniqueItemOnly)
+                    countUnique++;
+            }
+
+            return
+                !(loc.UniqueItemOnly || countUnique == 0);
+
+        }
+
+        public bool testLocation(ItemType item, Location loc)
+        {
+
+            bool LateGame = loc.LateGameItem || !IsLateGameItem(item);
+            bool Unique = loc.UniqueItemOnly || !GetUniqueItems().Contains(item);
+
+            return LateGame || Unique;
+        }
+        public List<Location> getEmptyLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) select location).ToList();
+        }
+        public List<Location> getEmptyLateLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) && !location.LateGameItem select location).ToList();
+        }
+        public List<Location> getEmptyUniqueLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) && !location.UniqueItemOnly select location).ToList();
+        }
+
         public List<ItemType> GetImplicitProgressionItems(List<ItemType> have)
         {
             var retVal = new List<ItemType>();
 
-            if (CanEscapeCastle(have) && have.Contains(ItemType.PegasusBoots) && !have.Contains(ItemType.BookOfMudora))
+            if (CanEscapeCastle(have))
             {
                 retVal.Add(ItemType.BookOfMudora);
             }
-            if (CanGetMasterSword(have) && !have.Contains(ItemType.Bombos) && CanAccessLowerDarkWorld(have))
+            if (CanEscapeCastle(have))
             {
                 retVal.Add(ItemType.Bombos);
             }
-            if (CanGetMasterSword(have) && !have.Contains(ItemType.Ether))
+            if (CanEscapeCastle(have))
             {
                 retVal.Add(ItemType.Ether);
             }
-            if (CanEscapeCastle(have) && have.Contains(ItemType.Shovel))
+            if (CanEscapeCastle(have))
             {
                 retVal.Add(ItemType.OcarinaInactive);
                 retVal.Add(ItemType.OcarinaActive);
@@ -2407,7 +2565,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Lamp,
                 ItemType.Lamp,
                 //ItemType.L1SwordAndShield,
-                ItemType.MagicMirror,
+                //ItemType.MagicMirror,
                 ItemType.MoonPearl,
                 ItemType.PegasusBoots,
                 ItemType.PowerGlove,

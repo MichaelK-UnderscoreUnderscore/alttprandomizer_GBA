@@ -114,6 +114,7 @@
   <ItemGroup>
     <Content Include="chest_notes.txt" />
     <Content Include="NPC List.txt" />
+    <Content Include="TextFile1.txt" />
     <None Include="Resources\MenuFileSaveIcon.png" />
   </ItemGroup>
   <ItemGroup>

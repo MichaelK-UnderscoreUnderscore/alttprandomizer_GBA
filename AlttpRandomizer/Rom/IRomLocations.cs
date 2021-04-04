@@ -20,6 +20,13 @@ namespace AlttpRandomizer.Rom
         void TryInsertCandidateItem(List<Location> currentLocations, List<ItemType> candidateItemList, ItemType candidateItem);
         int GetInsertedLocation(List<Location> currentLocations, ItemType insertedItem, SeedRandom random);
         ItemType GetInsertedItem(List<Location> currentLocations, List<ItemType> itemPool, SeedRandom random);
+        List<ItemType> GetInLogicItems(List<ItemType> have);
+        bool isItemEarly(ItemType item, List<ItemType> have);
+        bool isLocationEarly(Location loc);
+        List<Location> getEmptyLocation();
+        List<Location> getEmptyLateLocation();
+        List<Location> getEmptyUniqueLocation();
+        bool testLocation(ItemType ítem, Location loc);
         List<ItemType> GetItemPool(SeedRandom random);
 	    List<ItemType> GetImplicitProgressionItems(List<ItemType> haveItems);
     }

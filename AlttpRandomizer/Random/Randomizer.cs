@@ -33,8 +33,8 @@ namespace AlttpRandomizer.Random
 			this.romLocations = romLocations;
 			this.seed = seed;
 			this.log = log;
-			this.romImage = rom;
-			this.romRegion = region;
+			romImage = rom;
+			romRegion = region;
 		}
 
 		public string CreateRom(string filename, bool spoilerOnly = false)
@@ -351,6 +351,8 @@ namespace AlttpRandomizer.Random
                     location.WriteItemCheck?.Invoke(rom, location.Item.Type, romRegion);
                 }
 
+				AddPatches(rom);
+
 				WriteSeedInRom(rom);
 				rom.Close();
 			}
@@ -391,100 +393,107 @@ namespace AlttpRandomizer.Random
 
 		private void GenerateItemPositions()
 		{
+			int count = 0;
 			do
 			{
-				var currentLocations = romLocations.GetAvailableLocations(haveItems);
-				var candidateItemList = new List<ItemType>();
-
-				// Generate candidate item list
-				foreach (var candidateItem in itemPool)
+				count++;
+				try
 				{
-					haveItems.Add(candidateItem);
-                    var addedItems = AddProgressionItems(haveItems);
-					var newLocations = romLocations.GetAvailableLocations(haveItems);
 
-					if (newLocations.Count > currentLocations.Count)
+					var currentLocations = romLocations.GetAvailableLocations(haveItems);
+					var tempItems = new List<ItemType>();
+					var tempItems2 = new List<ItemType>();
+
+					tempItems.AddRange(itemPool.GetRange(0,itemPool.Count));
+
+					int randItem = random.Next(itemPool.Count < 50 ? itemPool.Count : 50);      // Get a random Item to try and fill next
+					var testItem = itemPool[randItem];                                          // Favoring for front of the List where Progression Items are at start.
+
+
+					if (romLocations.isItemEarly(testItem, itemPool))
 					{
-						romLocations.TryInsertCandidateItem(currentLocations, candidateItemList, candidateItem);
+						continue;
 					}
 
-					haveItems.Remove(candidateItem);
-				    foreach (var item in addedItems)
-				    {
-				        haveItems.Remove(item);
-				    }
+					tempItems.RemoveAt(randItem);                                               // and remove it from the current test pool
+
+					while (tempItems.Count > tempItems2.Count)                                  // Collect all Items reachable with test Item pool
+					{
+						tempItems2.Clear();
+						tempItems2 = tempItems.ToList();
+						var x = romLocations.GetInLogicItems(tempItems);
+						tempItems.Clear();
+						tempItems = itemPool.ToList();
+						tempItems.RemoveAt(randItem);
+						tempItems.AddRange(x);
+					}
+
+					var locList = romLocations.GetAvailableLocations(tempItems);                // See what Locations are available
+					var lateUnique = new List<Location>();
+					var loc1 = romLocations.getEmptyLateLocation();
+					var loc2 = romLocations.getEmptyUniqueLocation();
+					lateUnique.AddRange(loc1);
+					lateUnique.AddRange(loc2);
+
+					if (lateUnique.Count > 0)
+						locList = lateUnique;
+					bool loc = true;
+					while (loc)
+					{
+						int randLT = random.Next(locList.Count);                                // Find a Random Location we can throw our Item in
+						if (romLocations.isLocationEarly(locList[randLT]))                      // but first test if the Location is coming to early
+							continue;
+						if (romLocations.testLocation(testItem, locList[randLT]))
+						{
+							loc = false;
+							foreach (Location location in romLocations.Locations)
+								if (location.Name == locList[randLT].Name)
+									location.Item = new Item(testItem);
+							itemPool.Remove(testItem);
+							haveItems.Add(testItem);
+						}
+					}
 				}
-
-                // Grab an item from the candidate list if there are any, otherwise, grab a random item
-                if (candidateItemList.Count > 0)
+				catch (ArgumentOutOfRangeException)
 				{
-					var insertedItem = candidateItemList[random.Next(candidateItemList.Count)];
+					if (RandomizerVersion.Debug)
+					{
+						using (var writer = new StreamWriter(string.Format("unavailableLocations - {0}.txt", string.Format(romLocations.SeedFileString, seed))))
+						{
+							var unavailable = romLocations.GetUnavailableLocations(haveItems);
 
-					itemPool.Remove(insertedItem);
-					haveItems.Add(insertedItem);
-                    AddProgressionItems(haveItems);
+							writer.WriteLine("Unavailable Locations");
+							writer.WriteLine("---------------------");
 
-                    int insertedLocation = romLocations.GetInsertedLocation(currentLocations, insertedItem, random);
-					currentLocations[insertedLocation].Item = new Item(insertedItem);
+							foreach (var location in unavailable.OrderBy(x => x.Name))
+							{
+								writer.WriteLine(location.Name);
+							}
 
-					log?.AddOrderedItem(currentLocations[insertedLocation]);
-				}
-				else
-				{
-				    try
-				    {
-                        ItemType insertedItem = romLocations.GetInsertedItem(currentLocations, itemPool, random);
+							writer.WriteLine();
+							writer.WriteLine("Have Items");
+							writer.WriteLine("----------");
 
-                        itemPool.Remove(insertedItem);
-                        haveItems.Add(insertedItem);
-                        AddProgressionItems(haveItems);
+							foreach (var item in haveItems)
+							{
+								writer.WriteLine(item);
+							}
 
-                        int insertedLocation = romLocations.GetInsertedLocation(currentLocations, insertedItem, random);
-                        currentLocations[insertedLocation].Item = new Item(insertedItem);
-                    }
-                    catch (ArgumentOutOfRangeException)
-				    {
-				        if (RandomizerVersion.Debug)
-				        {
-                            using (var writer = new StreamWriter(string.Format("unavailableLocations - {0}.txt", string.Format(romLocations.SeedFileString, seed))))
-                            {
-                                var unavailable = romLocations.GetUnavailableLocations(haveItems);
+							writer.WriteLine();
+							writer.WriteLine("Item Pool");
+							writer.WriteLine("---------");
 
-                                writer.WriteLine("Unavailable Locations");
-                                writer.WriteLine("---------------------");
-
-                                foreach (var location in unavailable.OrderBy(x => x.Name))
-                                {
-                                    writer.WriteLine(location.Name);
-                                }
-
-                                writer.WriteLine();
-                                writer.WriteLine("Have Items");
-                                writer.WriteLine("----------");
-
-                                foreach (var item in haveItems)
-                                {
-                                    writer.WriteLine(item);
-                                }
-
-                                writer.WriteLine();
-                                writer.WriteLine("Item Pool");
-                                writer.WriteLine("---------");
-
-                                foreach (var item in itemPool)
-                                {
-                                    writer.WriteLine(item);
-                                }
-                            }
-                        }
-				        throw;
-				    }
+							foreach (var item in itemPool)
+							{
+								writer.WriteLine(item);
+							}
+						}
+					}
+					throw;
 				}
 			} while (itemPool.Count > 0);
 
-			var unavailableLocations = romLocations.GetUnavailableLocations(haveItems);
-
-			foreach (var unavailableLocation in unavailableLocations)
+			foreach (var unavailableLocation in romLocations.getEmptyLocation())
 			{
 				unavailableLocation.Item = new Item(ItemType.Nothing);
 			}
@@ -508,6 +517,12 @@ namespace AlttpRandomizer.Random
 
             return retVal;
         }
+
+        private void AddPatches(FileStream rom)
+        {
+			rom.Seek(romRegion ? 0xD34F0 : 0xD2723, SeekOrigin.Begin);
+			rom.Write(new[] { (byte)0x01 }, 0, 1);
+		}
 
 		private void GenerateItemList()
 		{

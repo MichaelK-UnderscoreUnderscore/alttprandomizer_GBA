@@ -4,8 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text;
+using System.Text.RegularExpressions;
 using AlttpRandomizer.Net;
 using AlttpRandomizer.Rom;
+using AlttpRandomizer.Random;
 
 namespace AlttpRandomizer.IO
 {
@@ -14,13 +17,19 @@ namespace AlttpRandomizer.IO
 		private readonly List<Location> generatedItems;
 		private readonly List<Location> orderedItems;
 		private readonly string seed;
+        private string strseed;
+        private static SeedRandom random;
 
-		public RandomizerLog(string seed)
+
+        public RandomizerLog(string seed)
 		{
 			generatedItems = new List<Location>();
 			orderedItems = new List<Location>();
 			this.seed = seed;
-		}
+
+            string y = Regex.Replace(seed, @"\D", "");
+            random = new SeedRandom(int.Parse(y));
+        }
 
 		public void AddOrderedItem(Location Location)
 		{
@@ -174,9 +183,11 @@ namespace AlttpRandomizer.IO
 			{
 				case ItemType.L1SwordAndShield:
 					return "L1 Sword & Shield";
-				case ItemType.MirrorShield:
-					return "Mirror Shield";
-				case ItemType.FireRod:
+                case ItemType.MirrorShield:
+                    return "Mirror Shield";
+                case ItemType.Mushroom:
+                    return "Mushroom";
+                case ItemType.FireRod:
 					return "Fire Rod";
 				case ItemType.IceRod:
 					return "Ice Rod";
@@ -259,8 +270,25 @@ namespace AlttpRandomizer.IO
 				case ItemType.PegasusBoots:
 					return "Pegasus Boots";
                 case ItemType.RedShield:
-			        return "Red Shield";
-				default:
+                    return "Red Shield";
+                case ItemType.Nothing:
+                    switch (random.Next(5))
+                    {
+                        case 1:
+                            return "Fell off his stump";
+                        case 2:
+                            return "Did hold the Lamp";
+                        case 3:
+                            return "Got hit in a Thunderstorm";
+                        case 4:
+                            return "Checked Stun Prize on him, It's Green Rupees. Hope no one was needing this one for something.";
+                        case 5:
+                            return "Never go against a Programmer again you little bit of Code and Data";
+                        default:
+                            return "Nothing";
+                    }
+                    
+                default:
 					throw new ArgumentException("Couldn't get item type!", "item");
 			}
 		}

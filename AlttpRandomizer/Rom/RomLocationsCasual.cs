@@ -1997,11 +1997,29 @@ namespace AlttpRandomizer.Rom
                     WriteItemCheck =
                         (rom, item, romRegion) =>
                         {
-                            rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin); 
+                            rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
                             rom.Write(Item.GetCheckLocation(item), 0, 1);
                         }
                 },
-                /*new Location // Considering to banish this guy out of my game, dumb stumb kid.
+                /*new Location
+                {
+                    LateGameItem = false,
+                    UniqueItemOnly = true,
+                    Region = Region.LightWorld,
+                    Name = "Grove Digging",
+                    Address_JP = 0xDF4FA,
+                    Address_US = 0xDE682,
+                    CanAccess =
+                        have =>
+                        CanDefeatEasternPalace(have),
+                    WriteItemCheck =
+                        (rom, item, romRegion) =>
+                        {
+                            rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
+                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                        }
+                },*/ // Item Checks (0x2E) + Location (0x14)
+                new Location // Considering to banish this guy out of my game, dumb stumb kid.
                 {
                     LateGameItem = false,
                     UniqueItemOnly = true,
@@ -2012,7 +2030,8 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         CanAccessLowerDarkWorld(have),
-                    WriteItemCheck =
+                    Item = new Item(ItemType.Nothing),
+                    /*WriteItemCheck =
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(0x31096, SeekOrigin.Begin);
@@ -2046,8 +2065,8 @@ namespace AlttpRandomizer.Rom
                                 rom.Seek(0x33067, SeekOrigin.Begin);
                                 rom.Write(new []{ (byte)0x03 }, 0, 1);
                             }
-                        }
-                },*/ // Item Checks
+                        }*/
+                },
                 new Location
                 {
                     LateGameItem = false,
@@ -2533,17 +2552,85 @@ namespace AlttpRandomizer.Rom
             bool badLateGameItem;
             bool needUniqueItem;
             bool preferLateGameItem;
-
             do
             {
                 retVal = itemPool[random.Next(itemPool.Count)];
-
                 badLateGameItem = IsLateGameItem(retVal) && !currentLocations.Any(x => x.LateGameItem);
                 needUniqueItem = !uniqueItems.Contains(retVal) && currentLocations.All(x => x.UniqueItemOnly);
                 preferLateGameItem = !IsLateGameItem(retVal) && currentLocations.Any(x => x.LateGameItem) && itemPool.Any(IsLateGameItem);
             } while (badLateGameItem || needUniqueItem || preferLateGameItem);
 
             return retVal;
+        }
+
+        public List<ItemType> GetInLogicItems(List<ItemType> have)
+        {
+            var retVal = new List<ItemType>();
+            
+            foreach(Location location in Locations)
+            {
+                if (location.Item != null && location.CanAccess(have))
+                    retVal.Add(location.Item.Type);
+            }
+
+            foreach (ItemType item in GetImplicitProgressionItems(have))
+            {
+                retVal.Add(item);
+            }
+
+            return retVal;
+        }
+        public bool isItemEarly(ItemType item, List<ItemType> have)
+        {
+            if (IsLateGameItem(item))                           // Place Late Game Items first into late game spots.
+                return false;
+
+            int countUnique = 0;
+            foreach (ItemType it in have)
+            {
+                if (IsLateGameItem(it))                         // If there are still Late Game Items Left, wait till those are out
+                    return true;
+                if (GetUniqueItems().Contains(it))
+                    countUnique++;
+            }
+
+            return                                              // If there are either no Unique Items Left to be placed or the Item is Unique, It's good.
+                !(GetUniqueItems().Contains(item) || countUnique == 0);
+        }
+
+        public bool isLocationEarly(Location loc)
+        {
+            int countUnique = 0;
+            foreach (Location lt in Locations)
+            {
+                if (lt.Item == null && lt.UniqueItemOnly)
+                    countUnique++;
+            }
+
+            return
+                !(loc.UniqueItemOnly || countUnique == 0);
+
+        }
+
+        public bool testLocation(ItemType item, Location loc)
+        {
+
+            bool LateGame = loc.LateGameItem || !IsLateGameItem(item);
+            bool Unique = loc.UniqueItemOnly || !GetUniqueItems().Contains(item);
+
+            return LateGame || Unique;
+        }
+        public List<Location> getEmptyLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) select location).ToList();
+        }
+        public List<Location> getEmptyLateLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) && !location.LateGameItem select location).ToList();
+        }
+        public List<Location> getEmptyUniqueLocation()
+        {
+            return (from Location location in Locations where (location.Item == null) && !location.UniqueItemOnly select location).ToList();
         }
 
         public List<ItemType> GetImplicitProgressionItems(List<ItemType> have)
@@ -2571,7 +2658,7 @@ namespace AlttpRandomizer.Rom
             {
                 retVal.Add(ItemType.Powder);
             }
-            if (have.Contains(ItemType.TitansMitt))
+            if (CanEscapeCastle(have) && have.Contains(ItemType.TitansMitt) && have.Contains(ItemType.MoonPearl))
             {
                 retVal.Add(ItemType.L3Sword);
             }
@@ -2593,7 +2680,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Hookshot,
                 ItemType.IceRod,
                 ItemType.Lamp,
-                //ItemType.MagicMirror,
+                ItemType.MagicMirror,
                 ItemType.MoonPearl,
                 ItemType.PegasusBoots,
                 ItemType.BookOfMudora,
@@ -2601,14 +2688,14 @@ namespace AlttpRandomizer.Rom
                 ItemType.Quake,
                 ItemType.Shovel,
                 ItemType.Mushroom,
-                //ItemType.TitansMitt,
+                ItemType.TitansMitt,
                 ItemType.BlueMail,
                 ItemType.Boomerang,
                 ItemType.BugCatchingNet,
                 ItemType.Cape,
-                //ItemType.MirrorShield,
-                //ItemType.RedBoomerang,
-                //ItemType.RedMail,
+                ItemType.MirrorShield,
+                ItemType.RedBoomerang,
+                ItemType.RedMail,
                 ItemType.StaffOfByrna,
             };
         }
@@ -2625,15 +2712,14 @@ namespace AlttpRandomizer.Rom
                 ItemType.Hammer,
                 ItemType.Hookshot,
                 ItemType.IceRod,
+                ItemType.Mushroom,
                 ItemType.Lamp,
                 ItemType.Lamp,
                 ItemType.Lamp,
-                //ItemType.L1SwordAndShield,    // Pre Set on Uncle
-                //ItemType.MagicMirror,         // Pre Set in Links House till Aga Beating doesn't strand you
+                // ItemType.L1SwordAndShield,
+                // ItemType.MagicMirror,
                 ItemType.MoonPearl,
                 ItemType.PegasusBoots,
-                ItemType.BookOfMudora,
-                ItemType.Mushroom,
                 ItemType.PowerGlove,
                 ItemType.Quake,
                 ItemType.Shovel,
@@ -2697,7 +2783,6 @@ namespace AlttpRandomizer.Rom
                 ItemType.OneRupee,
                 ItemType.FiveRupees,
                 ItemType.FiveRupees,
-                ItemType.TwentyRupees,
                 ItemType.TwentyRupees,
                 ItemType.TwentyRupees,
                 ItemType.TwentyRupees,
