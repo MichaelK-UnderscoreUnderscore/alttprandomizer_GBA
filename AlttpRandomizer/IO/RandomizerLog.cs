@@ -70,105 +70,105 @@ namespace AlttpRandomizer.IO
             writer.AppendLine();
             writer.AppendLine("Light World");
             writer.AppendLine("-----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.LightWorld).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.LightWorld).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Dark World");
             writer.AppendLine("----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.DarkWorld).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.DarkWorld).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Hyrule Castle Escape");
             writer.AppendLine("--------------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.HyruleCastleEscape).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.HyruleCastleEscape).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Eastern Palace");
             writer.AppendLine("--------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.EasternPalace).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.EasternPalace).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Desert Palace");
             writer.AppendLine("-------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.DesertPalace).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.DesertPalace).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Tower of Hera");
             writer.AppendLine("-------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.TowerOfHera).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.TowerOfHera).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Hyrule Castle Tower");
             writer.AppendLine("-------------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.HyruleCastleTower).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.HyruleCastleTower).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Dark Palace");
             writer.AppendLine("-----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.DarkPalace).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.DarkPalace).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Swamp Palace");
             writer.AppendLine("------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.SwampPalace).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.SwampPalace).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Skull Woods");
             writer.AppendLine("-----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.SkullWoods).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.SkullWoods).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Thieves Town");
             writer.AppendLine("------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.ThievesTown).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.ThievesTown).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Ice Palace");
             writer.AppendLine("----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.IcePalace).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.IcePalace).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Misery Mire");
             writer.AppendLine("-----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.MiseryMire).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.MiseryMire).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Turtle Rock");
             writer.AppendLine("-----------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.TurtleRock).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.TurtleRock).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
             writer.AppendLine();
             writer.AppendLine("Ganon's Tower");
             writer.AppendLine("-------------");
-            foreach (var Location in generatedItems.Where(x => x.Item.Type != ItemType.Nothing && x.Region == Region.GanonsTower).OrderBy(x => x.Name))
+            foreach (var Location in generatedItems.Where(x => x.Region == Region.GanonsTower).OrderBy(x => x.Name))
             {
                 writer.AppendLine(string.Format("{0}{1}", Location.Name.PadRight(90, '.'), GetItemName(Location.Item)));
             }
@@ -272,6 +272,8 @@ namespace AlttpRandomizer.IO
                 case ItemType.RedShield:
                     return "Red Shield";
                 case ItemType.Nothing:
+                    return "Nothing";
+
                     switch (random.Next(5))
                     {
                         case 1:
