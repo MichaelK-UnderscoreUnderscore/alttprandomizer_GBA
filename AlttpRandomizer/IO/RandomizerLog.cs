@@ -16,7 +16,6 @@ namespace AlttpRandomizer.IO
 		private readonly List<Location> generatedItems;
 		private readonly List<Location> orderedItems;
 		private readonly string seed;
-        private string strseed;
         private static SeedRandom random;
 
 

@@ -20,7 +20,8 @@ namespace AlttpRandomizer.Random
 	{
 		private static SeedRandom random;
 		private List<ItemType> haveItems;
-		private List<ItemType> itemPool;
+		private List<ItemType> advancementPool;
+		private List<ItemType> fillerPool;
 		private readonly int seed;
 		private readonly IRomLocations romLocations;
 		private readonly RandomizerLog log;
@@ -46,7 +47,7 @@ namespace AlttpRandomizer.Random
 
                 GenerateItemList();
                 GenerateDungeonItems();
-                GenerateItemPositions(spoilerOnly);
+                GenerateItemPositions(true);
 
 		        if (spoilerOnly)
 		        {
@@ -64,7 +65,6 @@ namespace AlttpRandomizer.Random
 		        throw newEx;
 		    }
 		}
-
 		private void GenerateDungeonItems()
 		{
 			GenerateHyruleCastleEscapeItems();
@@ -93,6 +93,9 @@ namespace AlttpRandomizer.Random
 
 			currentLocations = locations.Where(x => x.Item == null && x.KeysNeeded <= keys).ToList();
 			currentLocations[random.Next(currentLocations.Count)].Item = new Item(ItemType.Map);
+
+			currentLocations = locations.Where(x => x.Item == null && x.CanAccess(new List<ItemType>()) == true).ToList();
+			currentLocations[random.Next(currentLocations.Count)].Item = new Item(ItemType.Lamp);
 		}
 
 		private void GenerateEasternPalaceItems()
@@ -399,15 +402,22 @@ namespace AlttpRandomizer.Random
 				{
 					if (spoiler)																// Add a change between spoiler and non spoiler
 						random.Next(int.MaxValue);
+					var itemPool = advancementPool;
+					bool logic = true;
+					if (advancementPool.Count == 0)
+					{
+						itemPool = fillerPool;
+						logic = false;
+					}
 
 					var currentLocations = romLocations.GetAvailableLocations(haveItems);
 					var tempItems = new List<ItemType>();
 					var tempItems2 = new List<ItemType>();
 
-					tempItems.AddRange(itemPool.GetRange(0,itemPool.Count));
+					tempItems.AddRange(itemPool);
 
 					int randItem = random.Next(itemPool.Count < 50 ? itemPool.Count : 50);      // Get a random Item to try and fill next
-					var testItem = itemPool[randItem];                                          // Favoring for front of the List where Progression Items are at start.
+					var testItem = tempItems[randItem];                                          // Favoring for front of the List where Progression Items are at start.
 
 
 					if (romLocations.isItemEarly(testItem, itemPool))
@@ -415,49 +425,57 @@ namespace AlttpRandomizer.Random
 						continue;
 					}
 
-					tempItems.RemoveAt(randItem);                                               // and remove it from the current test pool
+					tempItems.Remove(testItem);                                               // and remove it from the current test pool
 
-					while (tempItems.Count > tempItems2.Count)                                  // Collect all Items reachable with test Item pool
+					if (logic)
 					{
-						if (spoiler)                                                            // Add a change between spoiler and non spoiler
-							random.Next(int.MaxValue);
-
-						tempItems2.Clear();
-						tempItems2 = tempItems.ToList();
-						var x = romLocations.GetInLogicItems(tempItems);
-						tempItems.Clear();
-						tempItems = itemPool.ToList();
-						tempItems.RemoveAt(randItem);
-						tempItems.AddRange(x);
-					}
-
-					var locList = romLocations.GetAvailableLocations(tempItems);                // See what Locations are available
-					var lateUnique = new List<Location>();
-					var loc1 = romLocations.getEmptyLateLocation();
-					var loc2 = romLocations.getEmptyUniqueLocation();
-					lateUnique.AddRange(loc1);
-					lateUnique.AddRange(loc2);
-
-					if (lateUnique.Count > 0)
-						locList = lateUnique;
-					bool loc = true;
-					while (loc)
-					{
-						if (spoiler)                                                                                                                            // Add a change between spoiler and non spoiler// Add a change between spoiler and non spoiler
-							random.Next(int.MaxValue);
-
-						int randLT = random.Next(locList.Count);                                // Find a Random Location we can throw our Item in
-						if (romLocations.isLocationEarly(locList[randLT]))                      // but first test if the Location is coming to early
-							continue;
-						if (romLocations.testLocation(testItem, locList[randLT]))
+						while (tempItems.Count > tempItems2.Count)                                  // Collect all Items reachable with test Item pool
 						{
-							loc = false;
-							foreach (Location location in romLocations.Locations)
-								if (location.Name == locList[randLT].Name)
-									location.Item = new Item(testItem);
-							itemPool.Remove(testItem);
-							haveItems.Add(testItem);
+							if (spoiler)                                                            // Add a change between spoiler and non spoiler
+								random.Next(int.MaxValue);
+
+							tempItems2.Clear();
+							tempItems2.AddRange(tempItems);
+
+							var x = romLocations.GetInLogicItems(tempItems);
+							tempItems.Clear();
+							tempItems.AddRange(itemPool.ToList());
+							tempItems.Remove(testItem);
+							tempItems.AddRange(x);
 						}
+						var locList = romLocations.GetAvailableLocations(tempItems);                // See what Locations are available
+						var lateUnique = romLocations.getEmptyLateLocation(testItem, tempItems);
+						lateUnique.AddRange(romLocations.getEmptyUniqueLocation(testItem, tempItems));
+						if (locList.Count < 5)
+							random.Next(1);
+						if (lateUnique.Count > 0)
+							locList = lateUnique;
+						bool loc = true;
+						while (loc)
+						{
+							if (spoiler)                                                                                                                            // Add a change between spoiler and non spoiler// Add a change between spoiler and non spoiler
+								random.Next(int.MaxValue);
+
+							int randLT = random.Next(locList.Count);                                // Find a Random Location we can throw our Item in
+							if (romLocations.testLocation(testItem, locList[randLT]))
+							{
+								loc = false;
+								romLocations.Locations[romLocations.Locations.IndexOf(locList[randLT])]
+									.Item = new Item(testItem);
+								itemPool.Remove(testItem);
+								haveItems.Add(testItem);
+							}
+						}
+					}
+					else
+					{
+						var locList = romLocations.getEmptyLocation();
+						int randLT = random.Next(locList.Count);
+
+						romLocations.Locations[romLocations.Locations.IndexOf(locList[randLT])]
+							.Item = new Item(testItem);
+						itemPool.Remove(testItem);
+						haveItems.Add(testItem);
 					}
 				}
 				catch (ArgumentOutOfRangeException)
@@ -486,10 +504,19 @@ namespace AlttpRandomizer.Random
 							}
 
 							writer.WriteLine();
-							writer.WriteLine("Item Pool");
+							writer.WriteLine("Advancement Pool Pool");
 							writer.WriteLine("---------");
 
-							foreach (var item in itemPool)
+							foreach (var item in advancementPool)
+							{
+								writer.WriteLine(item);
+							}
+
+							writer.WriteLine();
+							writer.WriteLine("Filler Pool Pool");
+							writer.WriteLine("---------");
+
+							foreach (var item in fillerPool)
 							{
 								writer.WriteLine(item);
 							}
@@ -497,7 +524,8 @@ namespace AlttpRandomizer.Random
 					}
 					throw;
 				}
-			} while (itemPool.Count > 0);
+			} while ((advancementPool.Count > 0 || fillerPool.Count > 0)
+				&& romLocations.getEmptyLocation().Count > 0);
 
 			foreach (var unavailableLocation in romLocations.getEmptyLocation())
 			{
@@ -507,22 +535,6 @@ namespace AlttpRandomizer.Random
 			log?.AddGeneratedItems(romLocations.Locations);
 		}
 
-        private List<ItemType> AddProgressionItems(List<ItemType> have)
-        {
-            var implicitProgressionItems = romLocations.GetImplicitProgressionItems(have);
-            var retVal = new List<ItemType>();
-
-            foreach (var item in implicitProgressionItems)
-            {
-                if (!have.Contains(item))
-                {
-                    have.Add(item);
-                    retVal.Add(item);
-                }
-            }
-
-            return retVal;
-        }
 
         private void AddPatches(FileStream rom)
         {
@@ -534,13 +546,8 @@ namespace AlttpRandomizer.Random
 		{
 			romLocations.ResetLocations();
 			haveItems = new List<ItemType>();
-			itemPool = romLocations.GetItemPool(random);
-			var unavailableLocations = romLocations.GetUnavailableLocations(itemPool);
-
-			for (int i = itemPool.Count; i < 100 - unavailableLocations.Count; i++)
-			{
-				itemPool.Add(ItemType.Nothing);
-			}
+			advancementPool = romLocations.GetAdvancementPool();
+			fillerPool = romLocations.GetFillerPool();
 		}
 	}
 }

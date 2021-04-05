@@ -2388,7 +2388,10 @@ namespace AlttpRandomizer.Rom
         {
             return have.Contains(ItemType.MagicMirror)
                 && have.Contains(ItemType.MoonPearl)
-                && CanDefeatAgahnim1(have);
+                && (CanDefeatAgahnim1(have)
+                    || have.Contains(ItemType.TitansMitt)
+                    || (have.Contains(ItemType.PowerGlove)
+                        && have.Contains(ItemType.Hammer)));
         }
 
         private bool CanEnterIcePalace(List<ItemType> have)
@@ -2419,15 +2422,17 @@ namespace AlttpRandomizer.Rom
         private bool CanEnterSwampPalace(List<ItemType> have)
         {
             return CanAccessLowerDarkWorld(have)
-                && have.Contains(ItemType.Flippers);
+                && have.Contains(ItemType.Flippers)
+                && have.Contains(ItemType.MagicMirror);
         }
 
         private bool CanAccessLowerDarkWorld(List<ItemType> have)
         {
-            return CanAccessPyramid(have)
-                && (have.Contains(ItemType.Hammer)
-					|| have.Contains(ItemType.Hookshot))
-                && CanBeInDarkWorld(have);
+            return (CanAccessPyramid(have)
+                    && have.Contains(ItemType.Hammer))
+                || (have.Contains(ItemType.Hammer)
+                    && have.Contains(ItemType.PowerGlove))
+                || canAccessNorthDarkWorld(have);
         }
 
         private bool CanEnterDarkPalace(List<ItemType> have)
@@ -2439,8 +2444,18 @@ namespace AlttpRandomizer.Rom
         {
             return (CanDefeatAgahnim1(have)
                     || (have.Contains(ItemType.Hammer)
-                        && have.Contains(ItemType.TitansMitt)))
-                && CanBeInDarkWorld(have);
+                        && (have.Contains(ItemType.TitansMitt)
+                            || have.Contains(ItemType.PowerGlove)))
+                && CanBeInDarkWorld(have));
+        }
+        private bool canAccessNorthDarkWorld(List<ItemType> have)
+        {
+            return (CanAccessPyramid(have)
+                && have.Contains(ItemType.Hookshot)
+                && (have.Contains(ItemType.Flippers)
+                    || have.Contains(ItemType.PowerGlove)
+                    || have.Contains(ItemType.TitansMitt)
+                    || have.Contains(ItemType.Hammer)));
         }
 
         private bool CanDefeatAgahnim1(List<ItemType> have)
@@ -2492,82 +2507,33 @@ namespace AlttpRandomizer.Rom
 
         public List<Location> GetAvailableLocations(List<ItemType> haveItems)
         {
-            return (from Location location in Locations where (location.Item == null) && location.CanAccess(haveItems) select location).ToList();
-        }
+            var loc = new List<Location>();
+            Item item;
+            bool canAccess = false;
 
+            foreach (Location location in Locations)
+            {
+                item = location.Item;
+                canAccess = location.CanAccess(haveItems);
+                if (location.Item == null && location.CanAccess(haveItems))
+                    loc.Add(location);
+            }
+            return loc;
+        }
         public List<Location> GetUnavailableLocations(List<ItemType> haveItems)
         {
             return (from Location location in Locations where (location.Item == null) && !location.CanAccess(haveItems) select location).ToList();
-        }
-
-        public void TryInsertCandidateItem(List<Location> currentLocations, List<ItemType> candidateItemList, ItemType candidateItem)
-        {
-            var uniqueItems = GetUniqueItems();
-            var badLateGameItem = IsLateGameItem(candidateItem) && !currentLocations.Any(x => x.LateGameItem);
-            var needUniqueItem = !uniqueItems.Contains(candidateItem) && currentLocations.All(x => x.UniqueItemOnly);
-            var badFirstItem = IsBadFirstItem(candidateItem) && currentLocations.All(x => x.Name == "[cave-040] Link's House");
-
-            if (!badLateGameItem && !needUniqueItem && !badFirstItem)
-            {
-                candidateItemList.Add(candidateItem);
-            }
-        }
-
-        private static bool IsBadFirstItem(ItemType item)
-        {
-            return (item == ItemType.PowerGlove || item == ItemType.TitansMitt || item == ItemType.RedShield || item == ItemType.MirrorShield);
-        }
-
-        public int GetInsertedLocation(List<Location> currentLocations, ItemType insertedItem, SeedRandom random)
-        {
-            int retVal;
-            var uniqueItems = GetUniqueItems();
-            bool badLateGameItemSpot;
-            bool badUniqueItemSpot;
-            bool badFirstItemSpot;
-            bool unusedUniqueItemSpot;
-
-            do
-            {
-                retVal = random.Next(currentLocations.Count);
-
-                badLateGameItemSpot = IsLateGameItem(insertedItem) && !currentLocations[retVal].LateGameItem;
-                badUniqueItemSpot = !uniqueItems.Contains(insertedItem) && currentLocations[retVal].UniqueItemOnly;
-                badFirstItemSpot = IsBadFirstItem(insertedItem) && currentLocations[retVal].Name == "[cave-040] Link's House";
-                unusedUniqueItemSpot = uniqueItems.Contains(insertedItem) && !currentLocations[retVal].UniqueItemOnly && currentLocations.Any(x => x.UniqueItemOnly);
-            } while (badLateGameItemSpot || badUniqueItemSpot || badFirstItemSpot || unusedUniqueItemSpot);
-
-            return retVal;
         }
 
         private static bool IsLateGameItem(ItemType item)
         {
             return item == ItemType.TitansMitt || item == ItemType.RedMail || item == ItemType.MirrorShield;
         }
-
-        public ItemType GetInsertedItem(List<Location> currentLocations, List<ItemType> itemPool, SeedRandom random)
-        {
-            ItemType retVal;
-            var uniqueItems = GetUniqueItems();
-            bool badLateGameItem;
-            bool needUniqueItem;
-            bool preferLateGameItem;
-            do
-            {
-                retVal = itemPool[random.Next(itemPool.Count)];
-                badLateGameItem = IsLateGameItem(retVal) && !currentLocations.Any(x => x.LateGameItem);
-                needUniqueItem = !uniqueItems.Contains(retVal) && currentLocations.All(x => x.UniqueItemOnly);
-                preferLateGameItem = !IsLateGameItem(retVal) && currentLocations.Any(x => x.LateGameItem) && itemPool.Any(IsLateGameItem);
-            } while (badLateGameItem || needUniqueItem || preferLateGameItem);
-
-            return retVal;
-        }
-
         public List<ItemType> GetInLogicItems(List<ItemType> have)
         {
             var retVal = new List<ItemType>();
-            
-            foreach(Location location in Locations)
+
+            foreach (Location location in Locations)
             {
                 if (location.Item != null && location.CanAccess(have))
                     retVal.Add(location.Item.Type);
@@ -2598,39 +2564,43 @@ namespace AlttpRandomizer.Rom
                 !(GetUniqueItems().Contains(item) || countUnique == 0);
         }
 
-        public bool isLocationEarly(Location loc)
-        {
-            int countUnique = 0;
-            foreach (Location lt in Locations)
-            {
-                if (lt.Item == null && lt.UniqueItemOnly)
-                    countUnique++;
-            }
-
-            return
-                !(loc.UniqueItemOnly || countUnique == 0);
-
-        }
 
         public bool testLocation(ItemType item, Location loc)
         {
+            if (IsLateGameItem(item))                   // If Item needs to be Late Game
+            {
+                return loc.LateGameItem;                // Check if location is a Late Game one.
+            }
 
-            bool LateGame = loc.LateGameItem || !IsLateGameItem(item);
-            bool Unique = loc.UniqueItemOnly || !GetUniqueItems().Contains(item);
+            if (loc.UniqueItemOnly)                     // If the Location can only accept Unique Items
+            {
+                return GetUniqueItems().Contains(item); // Check weather the Item is Unique.
+            }
 
-            return LateGame || Unique;
+            return true;                                // If neither the Item is Late Game or the Location needs Unique, it's always ok.
         }
         public List<Location> getEmptyLocation()
         {
             return (from Location location in Locations where (location.Item == null) select location).ToList();
         }
-        public List<Location> getEmptyLateLocation()
+        public List<Location> getEmptyLateLocation(ItemType item, List<ItemType> reachItems)
         {
-            return (from Location location in Locations where (location.Item == null) && !location.LateGameItem select location).ToList();
+            if (!IsLateGameItem(item))
+                return new List<Location>();
+
+            return (from Location location in Locations where (location.Item == null)
+                    && location.LateGameItem
+                    && location.CanAccess(reachItems)
+                    select location).ToList();
         }
-        public List<Location> getEmptyUniqueLocation()
+        public List<Location> getEmptyUniqueLocation(ItemType item, List<ItemType> reachItems)
         {
-            return (from Location location in Locations where (location.Item == null) && !location.UniqueItemOnly select location).ToList();
+            if (!GetUniqueItems().Contains(item))
+                return new List<Location>();
+        
+            return (from Location location in Locations where (location.Item == null)
+                    && location.UniqueItemOnly
+                    && location.CanAccess(reachItems) select location).ToList();
         }
 
         public List<ItemType> GetImplicitProgressionItems(List<ItemType> have)
@@ -2679,7 +2649,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Hammer,
                 ItemType.Hookshot,
                 ItemType.IceRod,
-                ItemType.Lamp,
+                //ItemType.Lamp,
                 ItemType.MagicMirror,
                 ItemType.MoonPearl,
                 ItemType.PegasusBoots,
@@ -2688,19 +2658,19 @@ namespace AlttpRandomizer.Rom
                 ItemType.Quake,
                 ItemType.Shovel,
                 ItemType.Mushroom,
-                ItemType.TitansMitt,
+                //ItemType.TitansMitt,
                 ItemType.BlueMail,
                 ItemType.Boomerang,
                 ItemType.BugCatchingNet,
                 ItemType.Cape,
-                ItemType.MirrorShield,
+                //ItemType.MirrorShield,
                 ItemType.RedBoomerang,
-                ItemType.RedMail,
+                //ItemType.RedMail,
                 ItemType.StaffOfByrna,
             };
         }
 
-        public List<ItemType> GetItemPool(SeedRandom random)
+        public List<ItemType> GetAdvancementPool()
         {
             return new List<ItemType>
             {
@@ -2715,7 +2685,9 @@ namespace AlttpRandomizer.Rom
                 ItemType.Mushroom,
                 ItemType.Lamp,
                 ItemType.Lamp,
-                ItemType.Lamp,
+                ItemType.BlueMail,
+                ItemType.Boomerang,
+                ItemType.Boomerang,
                 // ItemType.L1SwordAndShield,
                 // ItemType.MagicMirror,
                 ItemType.MoonPearl,
@@ -2725,29 +2697,32 @@ namespace AlttpRandomizer.Rom
                 ItemType.Quake,
                 ItemType.Shovel,
                 ItemType.TitansMitt,
-                
-                // nice-to-have items
-                ItemType.BlueMail,
-                ItemType.Boomerang,
-                ItemType.Boomerang,
                 ItemType.Bottle,
                 ItemType.Bottle,
                 ItemType.Bottle,
                 ItemType.Bottle,
                 ItemType.BugCatchingNet,
                 ItemType.Cape,
-                ItemType.HeartContainer,
                 ItemType.MirrorShield,
-                ItemType.PieceOfHeart,
-                ItemType.PieceOfHeart,
-                ItemType.PieceOfHeart,
-                ItemType.PieceOfHeart,
-                ItemType.PieceOfHeart,
-                ItemType.PieceOfHeart,
                 ItemType.RedBoomerang,
                 ItemType.RedMail,
                 ItemType.RedShield,
                 ItemType.StaffOfByrna,
+            };
+        }
+        public List<ItemType> GetFillerPool()
+        {
+            return new List<ItemType>
+            {
+                
+                // nice-to-have items
+                ItemType.HeartContainer,
+                ItemType.PieceOfHeart,
+                ItemType.PieceOfHeart,
+                ItemType.PieceOfHeart,
+                ItemType.PieceOfHeart,
+                ItemType.PieceOfHeart,
+                ItemType.PieceOfHeart,
                 
                 // other treasure box contents
                 ItemType.Arrow,

@@ -17,17 +17,14 @@ namespace AlttpRandomizer.Rom
         void ResetLocations();
         List<Location> GetAvailableLocations(List<ItemType> haveItems);
         List<Location> GetUnavailableLocations(List<ItemType> haveItems);
-        void TryInsertCandidateItem(List<Location> currentLocations, List<ItemType> candidateItemList, ItemType candidateItem);
-        int GetInsertedLocation(List<Location> currentLocations, ItemType insertedItem, SeedRandom random);
-        ItemType GetInsertedItem(List<Location> currentLocations, List<ItemType> itemPool, SeedRandom random);
         List<ItemType> GetInLogicItems(List<ItemType> have);
         bool isItemEarly(ItemType item, List<ItemType> have);
-        bool isLocationEarly(Location loc);
         List<Location> getEmptyLocation();
-        List<Location> getEmptyLateLocation();
-        List<Location> getEmptyUniqueLocation();
+        List<Location> getEmptyLateLocation(ItemType item, List<ItemType> reachItems);
+        List<Location> getEmptyUniqueLocation(ItemType item, List<ItemType> reachItems);
         bool testLocation(ItemType ítem, Location loc);
-        List<ItemType> GetItemPool(SeedRandom random);
+        List<ItemType> GetAdvancementPool();
+        List<ItemType> GetFillerPool();
 	    List<ItemType> GetImplicitProgressionItems(List<ItemType> haveItems);
     }
 }

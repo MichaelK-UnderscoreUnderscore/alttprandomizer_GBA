@@ -1,107 +1,26 @@
-﻿(jp)
-(us)
-------
-0D23BA - Bottle Vendor 
-0D15E2
-------
-0D376E - Stumpy
-0D2996
-------
-0D4708 - Smith
-0D3930
-------
-0D5644 ?? Pedestal
-0D4854
-------
-0D8A02 - Book (Library)
-0D7C12
-------
-0DD18C - Sick Kid
-0DC316
-------
-0DDD10 - Old Man
-0DCE9A
-------
-0DE44E - Hobo
-0DD5D6
-------
-0DF4FA ?? Sahasrahamanata
-0DE682
-------
-0F28E0 - Purple Chest
-0F19C4 
-------
-0F36CA ?? Boss Heart? // 26 //
-0F27AE
-------
-0F383A ?? Boss Hearts Again? // 3E //
-0F291E
-------
-0F3892 ?? Boss Hearts Again? // 26 //
-0F2976
-------
-0F6534 - Mushroom
-0F5618
-------
-110B4E - Powder
-10FBA6
-------
-1151C6 ?? // 52 //
-1141FE 
-------
-
-------
-
-------
-
-------
-
-------
-
-------
-
-------
-
-
-
-
-// this line is for the Item Give I think? seems to work so far
-bl sub_080A1588
-
-
--Bottle Vendor
--Sick Kid
--Saha
-Mini Moldorm
-Hype Cave
--Purple Chest
--Hobo
--Smith
--Ped
--Old Man
-Uncle
-Catfish
-Zora
-Magic Bat
--Stumpy
-
-Bombos
-Ether
--Shroom
--Powder
--Book
-
-Mire Med
-TR Med
-
-
-Item Location:
-Uncle		/ 0x00
-Bombos		/ 0x0F
-Ether		/ 0x10
-
-Item Checks:	Location  Check Value
-Uncle 		/ ??    / 0x3D
-Stumpy		/ D2996 / 0x32
-Bombos		/ ??    / 0x28
-Ether		/ ??    / 0x29
+﻿<?php
+return [
+    'advancement' => [
+    ],
+    'junk' => [
+        'PieceOfHeart' => 24,
+        'BombUpgrade5' => 0,
+        'BombUpgrade10' => 0,
+        'ArrowUpgrade5' => 0,
+        'ArrowUpgrade10' => 0,
+        'Arrow' => 1,
+        'TenArrows' => 12,
+        'Bomb' => 0,
+        'ThreeBombs' => 16,
+        'OneRupee' => 2,
+        'FiveRupees' => 4,
+        'TwentyRupees' => 28,
+        'TwentyRupees2' => 0,
+        'FiftyRupees' => 7,
+        'OneHundredRupees' => 1,
+        'ThreeHundredRupees' => 5,
+        'Heart' => 0,
+        'SmallMagic' => 0,
+        'Rupoor' => 0,
+    ],
+];
