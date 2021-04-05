@@ -1,26 +1,4 @@
-﻿<?php
-return [
-    'advancement' => [
-    ],
-    'junk' => [
-        'PieceOfHeart' => 24,
-        'BombUpgrade5' => 0,
-        'BombUpgrade10' => 0,
-        'ArrowUpgrade5' => 0,
-        'ArrowUpgrade10' => 0,
-        'Arrow' => 1,
-        'TenArrows' => 12,
-        'Bomb' => 0,
-        'ThreeBombs' => 16,
-        'OneRupee' => 2,
-        'FiveRupees' => 4,
-        'TwentyRupees' => 28,
-        'TwentyRupees2' => 0,
-        'FiftyRupees' => 7,
-        'OneHundredRupees' => 1,
-        'ThreeHundredRupees' => 5,
-        'Heart' => 0,
-        'SmallMagic' => 0,
-        'Rupoor' => 0,
-    ],
-];
+﻿To Fix:
+
+Zora			Item didn't Randomize
+Mushroom		Item disappeared

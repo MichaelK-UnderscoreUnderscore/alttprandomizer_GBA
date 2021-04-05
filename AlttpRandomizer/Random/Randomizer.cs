@@ -538,8 +538,6 @@ namespace AlttpRandomizer.Random
 
         private void AddPatches(FileStream rom)
         {
-			rom.Seek(romRegion ? 0xD34F0 : 0xD2723, SeekOrigin.Begin);
-			rom.Write(new[] { (byte)0x01 }, 0, 1);
 		}
 
 		private void GenerateItemList()

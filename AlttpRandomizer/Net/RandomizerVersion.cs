@@ -10,7 +10,7 @@ namespace AlttpRandomizer.Net
 {
     public class RandomizerVersion
     {
-        public static string Current = "0.2.5";
+        public static string Current = "0.2.6";
         public static bool Debug = false;
     
 
