@@ -1,0 +1,3 @@
+Download "armips" and "flips" (.url files to the respective projects provided) and place them where those files are.
+
+Take your ALttP GBA files and name it (for US) "ALttP_US.gba" and (for JP) "ALttP_JP.gba". place those in the "base" folder.

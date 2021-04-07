@@ -236,6 +236,6 @@ _Pvt_Extensions
 .fake/
 *.gba
 *.sav
-ALttP GBA Rando asm/armips.exe
-ALttP GBA Rando asm/Readme.md
-ALttP GBA Rando asm/flips.exe
+AlttpRandomizer/Assembly/armips.exe
+AlttpRandomizer/Assembly/Readme.md
+AlttpRandomizer/Assembly/flips.exe
