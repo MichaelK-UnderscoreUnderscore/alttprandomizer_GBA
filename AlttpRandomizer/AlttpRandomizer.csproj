@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AlttpRandomizer</RootNamespace>
     <AssemblyName>AlttpRandomizer_GBA</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -27,6 +27,9 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,9 +50,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CRC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CRC.1.0.0\lib\net451\CRC.dll</HintPath>
+    </Reference>
+    <Reference Include="LibIPS.NET">
+      <HintPath>..\packages\patch-applier.0.0.2\lib\net461\LibIPS.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="patch-applier">
+      <HintPath>..\packages\patch-applier.0.0.2\lib\net461\patch-applier.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,6 +109,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Assembly\ALttP_JP_MOD.gba" />
+    <None Include="Assembly\ALttP_US_MOD.gba" />
+    <None Include="Assembly\base\ALttP_JP.gba" />
+    <None Include="Assembly\base\ALttP_US.gba" />
+    <None Include="Assembly\build.bat" />
+    <None Include="Assembly\output\ALttP_JP_MOD.bps" />
+    <None Include="Assembly\output\ALttP_US_MOD.bps" />
+    <None Include="Assembly\Readme.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -112,6 +132,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assembly\armips.exe" />
+    <Content Include="Assembly\asm\intro_skip.asm" />
+    <Content Include="Assembly\build.asm" />
+    <Content Include="Assembly\flips.exe" />
+    <Content Include="Assembly\Setting up Assembly Dev.txt" />
+    <Content Include="Assembly\Things to Do.txt" />
     <Content Include="chest_notes.txt" />
     <Content Include="NPC List.txt" />
     <Content Include="TextFile1.txt" />
@@ -129,7 +155,20 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>cd $(ProjectDir)
+cd Assembly
+build.bat</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\patch-applier.0.0.2\build\patch-applier.targets" Condition="Exists('..\packages\patch-applier.0.0.2\build\patch-applier.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\patch-applier.0.0.2\build\patch-applier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\patch-applier.0.0.2\build\patch-applier.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,1 +1,4 @@
-.org 08000000
+.gba
+orga 0x12D778
+
+	b 0x12D7AC

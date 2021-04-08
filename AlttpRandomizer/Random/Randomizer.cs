@@ -6,6 +6,7 @@ using AlttpRandomizer.IO;
 using AlttpRandomizer.Net;
 using AlttpRandomizer.Properties;
 using AlttpRandomizer.Rom;
+using CodeIsle.LibIpsNet;
 
 namespace AlttpRandomizer.Random
 {
@@ -34,8 +35,8 @@ namespace AlttpRandomizer.Random
 			this.romLocations = romLocations;
 			this.seed = seed;
 			this.log = log;
-			romImage = rom;
 			romRegion = region;
+			romImage = applyBasePatch(rom, romRegion ? Resources.ALttP_JP_MOD : Resources.ALttP_US_MOD);
 		}
 
 		public string CreateRom(string filename, bool spoilerOnly = false)
@@ -354,8 +355,6 @@ namespace AlttpRandomizer.Random
                     location.WriteItemCheck?.Invoke(rom, location.Item.Type, romRegion);
                 }
 
-				AddPatches(rom);
-
 				WriteSeedInRom(rom);
 				rom.Close();
 			}
@@ -535,9 +534,17 @@ namespace AlttpRandomizer.Random
 			log?.AddGeneratedItems(romLocations.Locations);
 		}
 
-
-        private void AddPatches(FileStream rom)
-        {
+		private byte[] applyBasePatch(byte[] rom, byte[] patch)
+		{
+			Patcher patcher = new Patcher();
+			MemoryStream romStream = new MemoryStream();
+			romStream.Write(rom, 0, rom.Length);
+			MemoryStream patchStream = new MemoryStream();
+			patchStream.Write(patch, 0, patch.Length);
+			MemoryStream retVal = new MemoryStream();
+			
+			patcher.Patch(patchStream, romStream, retVal);
+			return retVal.ToArray();
 		}
 
 		private void GenerateItemList()
