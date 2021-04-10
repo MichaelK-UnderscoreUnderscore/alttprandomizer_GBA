@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CRC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -159,14 +159,16 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>cd $(ProjectDir)
-cd Assembly
+    <PreBuildEvent>rmdir "$(TargetDir)" /s /q
+mkdir "$(TargetDir)"
+cd "$(ProjectDir)Assembly"
 build.bat</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)\GBA_Rando_LICENSE $(OutDir)\GBA_Rando_LICENSE
-copy $(SolutionDir)\readme.md  $(OutDir)\readme.md
-copy $(SolutionDir)\LibIPS.NET_LICENSE $(OutDir)\LibIPS.NET_LICENSE</PostBuildEvent>
+    <PostBuildEvent>SET COPYCMD=/Y
+copy /a "$(SolutionDir)GBA_Rando_LICENSE" "$(TargetDir)GBA_Rando_LICENSE"
+copy /a "$(SolutionDir)readme.md" "$(TargetDir)readme.md"
+copy /a "$(SolutionDir)LibIPS_LICENSE" "$(TargetDir)LibIPS_LICENSE"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

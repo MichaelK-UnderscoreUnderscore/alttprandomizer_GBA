@@ -10,7 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base Files", "Base Files", "{7EBC7B01-33D9-4724-BD60-787F869AFDC8}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		LICENSE = LICENSE
+		GBA_RANDO_LICENSE = GBA_RANDO_LICENSE
 		readme.md = readme.md
 	EndProjectSection
 EndProject
