@@ -13,6 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,9 +30,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,12 +57,6 @@
     <Reference Include="CRC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CRC.1.0.0\lib\net451\CRC.dll</HintPath>
     </Reference>
-    <Reference Include="LibIPS.NET">
-      <HintPath>..\packages\patch-applier.0.0.2\lib\net461\LibIPS.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="patch-applier">
-      <HintPath>..\packages\patch-applier.0.0.2\lib\net461\patch-applier.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,6 +81,11 @@
     <Compile Include="Net\RandomizerVersion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Random\RandomizationException.cs" />
     <Compile Include="Random\Randomizer.cs" />
     <Compile Include="Random\SeedRandom.cs" />
@@ -101,21 +100,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Assembly\ALttP_JP_MOD.gba" />
     <None Include="Assembly\ALttP_US_MOD.gba" />
     <None Include="Assembly\base\ALttP_JP.gba" />
     <None Include="Assembly\base\ALttP_US.gba" />
     <None Include="Assembly\build.bat" />
-    <None Include="Assembly\output\ALttP_JP_MOD.bps" />
-    <None Include="Assembly\output\ALttP_US_MOD.bps" />
     <None Include="Assembly\Readme.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -156,20 +148,21 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LibIPS.NET\LibIPS.NET.csproj">
+      <Project>{b997eab5-fd05-4b98-9663-c9fe2d822150}</Project>
+      <Name>LibIPS.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assembly\output\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd $(ProjectDir)
 cd Assembly
 build.bat</PreBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\patch-applier.0.0.2\build\patch-applier.targets" Condition="Exists('..\packages\patch-applier.0.0.2\build\patch-applier.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\patch-applier.0.0.2\build\patch-applier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\patch-applier.0.0.2\build\patch-applier.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

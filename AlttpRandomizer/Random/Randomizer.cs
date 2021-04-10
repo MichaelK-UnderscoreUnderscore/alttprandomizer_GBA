@@ -537,10 +537,8 @@ namespace AlttpRandomizer.Random
 		private byte[] applyBasePatch(byte[] rom, byte[] patch)
 		{
 			Patcher patcher = new Patcher();
-			MemoryStream romStream = new MemoryStream();
-			romStream.Write(rom, 0, rom.Length);
-			MemoryStream patchStream = new MemoryStream();
-			patchStream.Write(patch, 0, patch.Length);
+			MemoryStream romStream = new MemoryStream(rom);
+			MemoryStream patchStream = new MemoryStream(patch);
 			MemoryStream retVal = new MemoryStream();
 			
 			patcher.Patch(patchStream, romStream, retVal);
