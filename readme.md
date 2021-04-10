@@ -9,11 +9,11 @@ The "No Logic" Difficulty is simmilar to "Standard, No Logic" on the SNES Rando,
 
 # Differences from the normal game
 There are a number of differences from a randomized game to the normal game. Here's a short list:  
-The Intro is Skipable (Just Select "New Game" on first startup).  
+- The Intro is Skipable (Just Select "New Game" on first startup).  
 - Chest items and items given to you by the bottle vendor, Sahasrahla, the sick kid, the purple chest, the hobo under the bridge, the catfish, King Zora, and the old mountain man are randomized. Note that this doesn't include chests in the various chest games throughout Hyrule.  
 
 Some bugs that wouldn't crop up in normal play have been fixed:  
-..... what, you expected bug fixes? You get a free Mirror to get you unstuck /s  
+- ..... what, you expected bug fixes? You get a free Mirror to get you unstuck /s  
 
 
 
