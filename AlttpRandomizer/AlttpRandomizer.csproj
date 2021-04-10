@@ -108,6 +108,8 @@
     <None Include="Assembly\base\ALttP_JP.gba" />
     <None Include="Assembly\base\ALttP_US.gba" />
     <None Include="Assembly\build.bat" />
+    <None Include="Assembly\output\ALttP_JP_MOD.ips" />
+    <None Include="Assembly\output\ALttP_US_MOD.ips" />
     <None Include="Assembly\Readme.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,14 +156,17 @@
       <Name>LibIPS.NET</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assembly\output\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd $(ProjectDir)
 cd Assembly
 build.bat</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy $(SolutionDir)\GBA_Rando_LICENSE $(OutDir)\GBA_Rando_LICENSE
+copy $(SolutionDir)\readme.md  $(OutDir)\readme.md
+copy $(SolutionDir)\LibIPS.NET_LICENSE $(OutDir)\LibIPS.NET_LICENSE</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

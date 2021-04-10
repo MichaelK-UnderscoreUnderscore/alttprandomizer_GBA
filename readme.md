@@ -29,10 +29,14 @@ These adjustments are Licensed under the MIT License.
 Copyright (c) 2021 Michael Kunze.
 
 The Randomizer is based of Dessyreqts work up to June 2016, forking of Version 3.
-No Licensing provided.
-Copyright (c) 2016 Dessyreqt.
+No Licensing information provided.
+Copyright (c) 2016 Dessyreqt, Karkat, ChristosOwen, and Smallhacker.
 
 LibIPS.NET is made by CodeIsle.com based on the work of Alcaro for Floating IPS.
 LibIPS.NET is licensed under the GNU Lesser General Public License, version 3.0 or higher.
 Copyright (c) 2013 - 2021 CodeIsle.com, http://www.codeisle.com
 Copyright (c) 2012 Alcaro.
+
+The CRC Library was made by Simon Haga.
+No Licensing information provided.
+Copyright (c) 2018 Simon Haga.
