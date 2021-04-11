@@ -2603,8 +2603,8 @@ namespace AlttpRandomizer.Rom
 
             return (from Location location in Locations
                     where (location.Item == null)
-&& location.LateGameItem
-&& location.CanAccess(reachItems)
+                    && location.LateGameItem
+                    && location.CanAccess(reachItems)
                     select location).ToList();
         }
         public List<Location> getEmptyUniqueLocation(ItemType item, List<ItemType> reachItems)
@@ -2614,8 +2614,8 @@ namespace AlttpRandomizer.Rom
 
             return (from Location location in Locations
                     where (location.Item == null)
-&& location.UniqueItemOnly
-&& location.CanAccess(reachItems)
+                    && location.UniqueItemOnly
+                    && location.CanAccess(reachItems)
                     select location).ToList();
         }
 
@@ -2706,11 +2706,11 @@ namespace AlttpRandomizer.Rom
                 ItemType.Bow,
                 ItemType.CaneOfSomaria,
                 ItemType.FireRod,
-                // ItemType.Flippers,
+                ItemType.Flippers,
                 ItemType.Hammer,
                 ItemType.Hookshot,
                 ItemType.IceRod,
-                // ItemType.Mushroom,
+                ItemType.Mushroom,
                 ItemType.Lamp,
                 ItemType.Lamp,
                 ItemType.BlueMail,
