@@ -103,7 +103,7 @@ namespace AlttpRandomizer.Rom
             }
         }
 
-        public static byte[] GetCheckLocation(ItemType item)
+        public static byte[] GetCheckLocation(ItemType item, bool Logic = true)
         {
             byte retVal;
 
@@ -201,6 +201,11 @@ namespace AlttpRandomizer.Rom
                     retVal = 0x3F;
                     break;
                 default:
+                    if (Logic == false)
+                    {
+                        retVal = 0xFF;
+                        break;
+                    }
                     throw new ArgumentException("Item must be a unique item.", "item");
             }
 

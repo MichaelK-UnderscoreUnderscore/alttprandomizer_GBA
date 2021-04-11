@@ -1999,7 +1999,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },
                 /*new Location
@@ -2017,7 +2017,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xDF378 : 0xDE500, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },*/ // Item Checks (0x2E) + Location (0x14)
                 new Location // Considering to banish this guy out of my game, dumb stumb kid.
@@ -2039,10 +2039,10 @@ namespace AlttpRandomizer.Rom
                             rom.Write(new[] { (byte)0x01 }, 0, 1);
 
                             /*rom.Seek(0x31096, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
 
                             rom.Seek(0xD2870  0x33063, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
 
                             var compList = new List<ItemType>
                             {
@@ -2087,7 +2087,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xDD128 : 0xDC2B0, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },
                 new Location
@@ -2132,7 +2132,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xF88D0 : 0xF79A0, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },
                 new Location
@@ -2154,7 +2154,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xEA8C4 : 0xE99B0, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },
                 new Location
@@ -2173,7 +2173,7 @@ namespace AlttpRandomizer.Rom
                         {
                             // old man check
                             rom.Seek(romRegion ? 0xDDC64 : 0xDCDEC, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
 
                             var compList = new List<ItemType>
                             {
@@ -2219,7 +2219,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xD81C0 : 0xD73D0, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },
                 new Location
@@ -2237,7 +2237,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(romRegion ? 0xF64A4 : 0xF5588, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
 
                             var compList = new List<ItemType>
                             {
@@ -2282,7 +2282,7 @@ namespace AlttpRandomizer.Rom
                         (rom, item, romRegion) =>
                         {
                             rom.Seek(0xEE103, SeekOrigin.Begin);
-                            rom.Write(Item.GetCheckLocation(item), 0, 1);
+                            rom.Write(Item.GetCheckLocation(item, false), 0, 1);
                         }
                 },*/ // Item Checks 
             };

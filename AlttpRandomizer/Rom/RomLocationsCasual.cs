@@ -2254,14 +2254,14 @@ namespace AlttpRandomizer.Rom
 
                             if (!compList.Contains(item))
                             {
-                                rom.Seek(romRegion ? 0xF64A7 : 0xF558B, SeekOrigin.Begin);
-                                rom.Write(new []{ (byte)0x01 }, 0, 1);
+                                rom.Seek(romRegion ? 0xF6476 : 0xF5568, SeekOrigin.Begin);
+                                rom.Write(new []{ (byte)0x00 }, 0, 1);
                             }
 
                             if (item == ItemType.MirrorShield || item == ItemType.OcarinaActive)
                             {
-                                rom.Seek(romRegion ? 0xF64A7 : 0xF558B, SeekOrigin.Begin);
-                                rom.Write(new []{ (byte)0x03 }, 0, 1);
+                                rom.Seek(romRegion ? 0xF6476 : 0xF555A, SeekOrigin.Begin);
+                                rom.Write(new []{ (byte)0x02 }, 0, 1);
                             }
                         }
                 },
@@ -2645,10 +2645,6 @@ namespace AlttpRandomizer.Rom
             {
                 retVal.Add(ItemType.Mushroom);
             }
-            if (CanEscapeCastle(have) && (have.Contains(ItemType.PowerGlove) || have.Contains(ItemType.TitansMitt)))
-            {
-                retVal.Add(ItemType.Flippers);
-            }
             if (CanEscapeCastle(have) && have.Contains(ItemType.TitansMitt) && have.Contains(ItemType.MoonPearl))
             {
                 retVal.Add(ItemType.L3Sword);
@@ -2699,11 +2695,11 @@ namespace AlttpRandomizer.Rom
                 ItemType.Bow,
                 ItemType.CaneOfSomaria,
                 ItemType.FireRod,
-                // ItemType.Flippers,
+                ItemType.Flippers,
                 ItemType.Hammer,
                 ItemType.Hookshot,
                 ItemType.IceRod,
-                // ItemType.Mushroom,
+                ItemType.Mushroom,
                 ItemType.Lamp,
                 ItemType.Lamp,
                 ItemType.BlueMail,
