@@ -293,7 +293,7 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         true,
-                    Item = new Item(ItemType.MagicMirror),
+                    Item = new Item(ItemType.PegasusBoots),
                 },
                 new Location
                 {
@@ -2555,6 +2555,24 @@ namespace AlttpRandomizer.Rom
             foreach (ItemType item in GetImplicitProgressionItems(have))
             {
                 retVal.Add(item);
+            }
+
+            return retVal;
+        }
+        public List<Location> GetOrderedItems()
+        {
+            var retVal = new List<Location>();
+
+            var UniqueAdvancementList = new List<ItemType>();
+            UniqueAdvancementList.AddRange(GetAdvancementPool());
+            UniqueAdvancementList.AddRange(GetUniqueItems());
+
+            foreach (Location loc in Locations)
+            {
+                if (UniqueAdvancementList.Contains(loc.Item.Type))
+                {
+                    retVal.Add(loc);
+                }
             }
 
             return retVal;

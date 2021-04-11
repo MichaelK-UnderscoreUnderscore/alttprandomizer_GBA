@@ -2559,6 +2559,51 @@ namespace AlttpRandomizer.Rom
 
             return retVal;
         }
+        private List<Location> GetInLogicLocations(List<ItemType> have)
+        {
+            var retVal = new List<Location>();
+            var temp = new List<ItemType>();
+
+            foreach (Location location in Locations)
+            {
+                if (location.Item != null && location.CanAccess(have))
+                    retVal.Add(location);
+            }
+
+            return retVal;
+        }
+        public List<Location> GetOrderedItems()
+        {
+            var retVal = new List<Location>();
+
+            var UniqueAdvancementList = new List<ItemType>();
+            UniqueAdvancementList.AddRange(GetAdvancementPool());
+            UniqueAdvancementList.AddRange(GetUniqueItems());
+            var playthroughItems = new List<ItemType>();
+            var tempItemLocation = new List<Location>();
+
+            do
+            {
+                {
+                    tempItemLocation.Clear();
+                    tempItemLocation.AddRange(retVal);
+
+                    var x = GetInLogicLocations(playthroughItems);
+                    playthroughItems.Clear();
+
+                    foreach (Location loc in x)
+                    {
+                        playthroughItems.Add(loc.Item.Type);
+                        if (!tempItemLocation.Contains(loc) && UniqueAdvancementList.Contains(loc.Item.Type))
+                        {
+                            retVal.Add(loc);
+                        }
+                    }
+                }
+            } while (retVal.Count > tempItemLocation.Count);
+
+            return retVal;
+        }
         public bool isItemEarly(ItemType item, List<ItemType> have)
         {
             if (IsLateGameItem(item))                           // Place Late Game Items first into late game spots.

@@ -36,7 +36,6 @@ namespace AlttpRandomizer.Random
 			this.seed = seed;
 			this.log = log;
 			romRegion = region;
-			romImage = applyBasePatch(rom, romRegion ? Resources.ALttP_JP_MOD : Resources.ALttP_US_MOD);
 		}
 
 		public string CreateRom(string filename, bool spoilerOnly = false)
@@ -339,11 +338,14 @@ namespace AlttpRandomizer.Random
 
 		private void WriteRom(string filename)
 		{
+
+
 			string usedFilename = FileName.Fix(filename, string.Format(romLocations.SeedFileString, seed));
 
 			using (var rom = new FileStream(usedFilename, FileMode.OpenOrCreate))
 			{
-				rom.Write(romImage, 0, 8388608);
+				var romImg = applyBasePatch(romImage, romRegion ? Resources.ALttP_JP_MOD : Resources.ALttP_US_MOD);
+				rom.Write(romImg, 0, 8388608);
 
 				foreach (var location in romLocations.Locations)
 				{
@@ -531,7 +533,10 @@ namespace AlttpRandomizer.Random
 				unavailableLocation.Item = new Item(ItemType.Nothing);
 			}
 
+
+			log?.AddOrderedItem(romLocations.GetOrderedItems());
 			log?.AddGeneratedItems(romLocations.Locations);
+
 		}
 
 		private byte[] applyBasePatch(byte[] rom, byte[] patch)

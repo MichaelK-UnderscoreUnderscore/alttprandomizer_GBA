@@ -29,9 +29,10 @@ namespace AlttpRandomizer.IO
             random = new SeedRandom(int.Parse(y));
         }
 
-		public void AddOrderedItem(Location Location)
+		public void AddOrderedItem(List<Location> Location)
 		{
-			orderedItems.Add(Location);
+            foreach (Location loc in Location)
+			    orderedItems.Add(loc);
 		}
 
 		public void AddGeneratedItems(List<Location> Locations)
