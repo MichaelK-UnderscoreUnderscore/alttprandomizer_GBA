@@ -17,6 +17,7 @@ namespace AlttpRandomizer.IO
 		private readonly List<Location> orderedItems;
 		private readonly string seed;
         private static SeedRandom random;
+        private string nothing = "Nothing";
 
 
         public RandomizerLog(string seed)
@@ -27,6 +28,17 @@ namespace AlttpRandomizer.IO
 
             string y = Regex.Replace(seed, @"\D", "");
             random = new SeedRandom(int.Parse(y));
+
+            string[] str = new string[]{
+                "Created a Combustible Lemon. Successfully.",
+                "Fell off his stump",
+                "Did hold the Lamp",
+                "Got hit in a Thunderstorm",
+                "Checked Stun Prize on him, It's Green Rupees. Hope no one was needing this one for something.",
+                "Never go against a Programmer again you little bit of Code and Data"
+            };
+
+            string nothing = str[random.Next(str.Length)];
         }
 
 		public void AddOrderedItem(List<Location> Location)
@@ -271,23 +283,7 @@ namespace AlttpRandomizer.IO
                 case ItemType.RedShield:
                     return "Red Shield";
                 case ItemType.Nothing:
-                    return "Nothing";
-
-                    switch (random.Next(5))
-                    {
-                        case 1:
-                            return "Fell off his stump";
-                        case 2:
-                            return "Did hold the Lamp";
-                        case 3:
-                            return "Got hit in a Thunderstorm";
-                        case 4:
-                            return "Checked Stun Prize on him, It's Green Rupees. Hope no one was needing this one for something.";
-                        case 5:
-                            return "Never go against a Programmer again you little bit of Code and Data";
-                        default:
-                            return "Nothing";
-                    }
+                    return nothing;
                     
                 default:
 					throw new ArgumentException("Couldn't get item type!", "item");

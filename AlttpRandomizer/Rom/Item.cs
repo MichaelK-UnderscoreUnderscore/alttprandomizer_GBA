@@ -107,6 +107,10 @@ namespace AlttpRandomizer.Rom
         {
             byte retVal;
 
+            if (Logic == false)
+            {
+                return new byte[] { 0xFF };
+            }
             switch (item)
             {
                 case ItemType.Bow:
@@ -201,11 +205,6 @@ namespace AlttpRandomizer.Rom
                     retVal = 0x3F;
                     break;
                 default:
-                    if (Logic == false)
-                    {
-                        retVal = 0xFF;
-                        break;
-                    }
                     throw new ArgumentException("Item must be a unique item.", "item");
             }
 

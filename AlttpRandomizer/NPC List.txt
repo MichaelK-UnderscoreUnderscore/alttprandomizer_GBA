@@ -1,4 +1,9 @@
-﻿To Fix:
+﻿Pot4
 
-Zora			Item didn't Randomize
-Mushroom		Item disappeared
+ways to not enter:
+0x020023EC == #0x0000FFFF
+	[0x08111B00 - 0x08111B14]
+
+0x03000008 < #10 
+	[0x08111B18 - 0x0811B30]
+

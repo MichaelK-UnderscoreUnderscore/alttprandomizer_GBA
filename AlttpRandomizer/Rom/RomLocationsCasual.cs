@@ -1931,7 +1931,8 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
-                        && have.Contains(ItemType.PowerGlove),
+                        && (have.Contains(ItemType.PowerGlove)
+                            || have.Contains(ItemType.Hammer)),
                 },
                 new Location
                 {
@@ -1944,7 +1945,8 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
-                        && have.Contains(ItemType.PowerGlove),
+                        && (have.Contains(ItemType.PowerGlove)
+                            || have.Contains(ItemType.Hammer)),
                 },
                 new Location
                 {
@@ -1957,7 +1959,8 @@ namespace AlttpRandomizer.Rom
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
-                        && have.Contains(ItemType.PowerGlove),
+                        && (have.Contains(ItemType.PowerGlove)
+                            || have.Contains(ItemType.Hammer)),
                 },
                 /*
                 // Getting anything other than the sword here can be bad for progress... may as well keep the sword here since you can't use it if you get it before the uncle.
@@ -1967,8 +1970,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Uncle",
-                    Address_JP = 0x2DF45,
-                    Address_US = 0xD23BA,
+                    //Address_JP = 0x2DF45,
+                    //Address_US = 0xD23BA,
                     CanAccess =
                         have =>
                         true,
@@ -2008,8 +2011,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Grove Digging",
-                    Address_JP = 0xDF4FA,
-                    Address_US = 0xDE682,
+                    //Address_JP = 0xDF4FA,
+                    //Address_US = 0xDE682,
                     CanAccess =
                         have =>
                         CanDefeatEasternPalace(have),
@@ -2272,8 +2275,8 @@ namespace AlttpRandomizer.Rom
                     UniqueItemOnly = true,
                     Region = Region.LightWorld,
                     Name = "Powder",
-                    Address_JP = 0x110B4E,
-                    Address_US = 0x10FBA6,
+                    //Address_JP = 0x110B4E,
+                    //Address_US = 0x10FBA6,
                     CanAccess =
                         have =>
                         CanEscapeCastle(have)
@@ -2432,11 +2435,8 @@ namespace AlttpRandomizer.Rom
         private bool CanAccessLowerDarkWorld(List<ItemType> have)
         {
             return CanBeInDarkWorld(have)
-                && ((CanAccessPyramid(have)
-                    && have.Contains(ItemType.Hammer))
-                || (have.Contains(ItemType.Hammer)
-                    && have.Contains(ItemType.PowerGlove))
-                || canAccessNorthDarkWorld(have));
+                && (have.Contains(ItemType.Hammer)
+                    || canAccessNorthDarkWorld(have));
         }
 
         private bool CanEnterDarkPalace(List<ItemType> have)
@@ -2448,9 +2448,7 @@ namespace AlttpRandomizer.Rom
         {
             return CanBeInDarkWorld(have)
                 && (CanDefeatAgahnim1(have)
-                    || (have.Contains(ItemType.Hammer)
-                        && (have.Contains(ItemType.PowerGlove)
-                            || have.Contains(ItemType.TitansMitt)))
+                    || have.Contains(ItemType.Hammer)
                     || (have.Contains(ItemType.TitansMitt)
                         && have.Contains(ItemType.Flippers)));
         }
@@ -2460,11 +2458,9 @@ namespace AlttpRandomizer.Rom
                 && ((CanAccessPyramid(have)
                     && have.Contains(ItemType.Hookshot)
                     && (have.Contains(ItemType.Flippers)
-                        || have.Contains(ItemType.PowerGlove)
-                        || have.Contains(ItemType.Hammer)))
+                        || have.Contains(ItemType.PowerGlove)))
                 || have.Contains(ItemType.TitansMitt)
-                || (have.Contains(ItemType.Hammer)
-                    && have.Contains(ItemType.PowerGlove)));
+                || have.Contains(ItemType.Hammer));
         }
 
         private bool CanDefeatAgahnim1(List<ItemType> have)
@@ -2480,7 +2476,8 @@ namespace AlttpRandomizer.Rom
         private bool CanDefeatDesertPalace(List<ItemType> have)
         {
             return CanEnterDesertPalace(have)
-                && have.Contains(ItemType.PowerGlove)
+                && (have.Contains(ItemType.PowerGlove)
+                    || have.Contains(ItemType.Hammer))
                 && have.Contains(ItemType.PegasusBoots);
         }
 
@@ -2745,10 +2742,7 @@ namespace AlttpRandomizer.Rom
                 ItemType.Hookshot,
                 ItemType.IceRod,
                 ItemType.Mushroom,
-                ItemType.Lamp,
-                ItemType.Lamp,
                 ItemType.BlueMail,
-                ItemType.Boomerang,
                 ItemType.Boomerang,
                 // ItemType.L1SwordAndShield,
                 // ItemType.MagicMirror,
@@ -2798,7 +2792,9 @@ namespace AlttpRandomizer.Rom
                 ItemType.TenArrows,
                 ItemType.TenArrows,
                 ItemType.TenArrows,
+                ItemType.TenArrows,
 
+                ItemType.ThreeBombs,
                 ItemType.ThreeBombs,
                 ItemType.ThreeBombs,
                 ItemType.ThreeBombs,
@@ -2821,6 +2817,10 @@ namespace AlttpRandomizer.Rom
                 ItemType.OneRupee,
                 ItemType.FiveRupees,
                 ItemType.FiveRupees,
+                ItemType.FiveRupees,
+                ItemType.FiveRupees,
+                ItemType.TwentyRupees,
+                ItemType.TwentyRupees,
                 ItemType.TwentyRupees,
                 ItemType.TwentyRupees,
                 ItemType.TwentyRupees,

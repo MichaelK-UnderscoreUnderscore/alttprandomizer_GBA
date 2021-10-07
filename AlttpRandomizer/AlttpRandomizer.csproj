@@ -128,12 +128,12 @@
   <ItemGroup>
     <Content Include="Assembly\armips.exe" />
     <Content Include="Assembly\asm\intro_skip.asm" />
+    <Content Include="Assembly\asm\Palace_of_the_4.asm" />
     <Content Include="Assembly\build_JP.asm" />
     <Content Include="Assembly\build_US.asm" />
     <Content Include="Assembly\flips.exe" />
     <Content Include="Assembly\Setting up Assembly Dev.txt" />
     <Content Include="Assembly\Things to Do.txt" />
-    <Content Include="chest_notes.txt" />
     <Content Include="NPC List.txt" />
     <None Include="Resources\MenuFileSaveIcon.png" />
   </ItemGroup>
